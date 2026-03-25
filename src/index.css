@@ -1,0 +1,105 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  color: #00ff88;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff;
+}
+
+/* Pixel art style utilities */
+.pixel-border {
+  box-shadow: 
+    -4px 0 0 0 #00ff88,
+    4px 0 0 0 #00ff88,
+    0 -4px 0 0 #00ff88,
+    0 4px 0 0 #00ff88;
+  margin: 4px;
+}
+
+.pixel-btn {
+  box-shadow: 
+    inset -4px -4px 0px 0px rgba(0,0,0,0.5),
+    4px 4px 0px 0px rgba(0,0,0,0.3);
+  transition: all 0.1s step-end;
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+}
+
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0px 0px rgba(0,0,0,0.5),
+    6px 6px 0px 0px rgba(0,0,0,0.3);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    inset -4px -4px 0px 0px rgba(0,0,0,0.5),
+    2px 2px 0px 0px rgba(0,0,0,0.3);
+}
+
+/* Terminal cursor */
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Scanline effect */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
