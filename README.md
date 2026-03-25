@@ -1,6 +1,6 @@
 # Python Code Puzzle 🎮
 
-**Aprende a Pensar como Programador** - Un juego educativo 2D estilo 8-bit que enseña Python.
+**Aprende a Pensar como Programador** - Un juego educativo 2D estilo 8-bit que enseña Python y un poco más...
 
 ## Stack Tecnológico
 
