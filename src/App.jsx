@@ -169,7 +169,7 @@ function LevelIntroScreen({ nivel, onStart }) {
 }
 
 // Componente de Pregunta
-function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, nivelColor, conceptosClave }) {
+function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, nivelColor, conceptosClave, onPause }) {
   const containerRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -183,6 +183,19 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     setSubmitted(false);
     setFeedback(null);
   }, [pregunta]);
+
+  // Atajo de teclado para pausa (tecla P o ESC)
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') {
+        e.preventDefault();
+        onPause();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [onPause]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -251,18 +264,29 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
       <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
 
       <div className="question-card max-w-4xl w-full relative z-10">
-        {/* Header con botón de apuntes */}
-        <div className="flex justify-between items-center mb-4">
-          <div className="text-pixel-blue text-sm">
-            Pregunta {numeroPregunta} de {totalPreguntas}
+        {/* Header con botones de apuntes y pausa */}
+        <div className="flex justify-between items-center mb-4 gap-2">
+          <div className="text-pixel-blue text-xs md:text-sm">
+            Pregunta {numeroPregunta}/{totalPreguntas}
           </div>
-          <button
-            onClick={() => setShowNotes(true)}
-            className="pixel-btn bg-pixel-dark border-2 border-pixel-green text-pixel-green px-4 py-2 text-sm flex items-center gap-2 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
-          >
-            <BookOpen size={16} />
-            Apuntes
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowNotes(true)}
+              className="pixel-btn bg-pixel-dark border-2 border-pixel-green text-pixel-green px-3 py-1 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 md:gap-2 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
+              title="Ver apuntes (tecla N)"
+            >
+              <BookOpen size={14} />
+              <span className="hidden md:inline">Apuntes</span>
+            </button>
+            <button
+              onClick={onPause}
+              className="pixel-btn bg-pixel-dark border-2 border-pixel-yellow text-pixel-yellow px-3 py-1 md:px-4 md:py-2 text-xs md:text-sm flex items-center gap-1 md:gap-2 hover:bg-pixel-yellow hover:text-pixel-dark transition-colors"
+              title="Pausar juego (tecla P o ESC)"
+            >
+              <span className="font-bold">⏸</span>
+              <span className="hidden md:inline">Pausa</span>
+            </button>
+          </div>
         </div>
 
         {/* Progress Bar 8-bit */}
@@ -571,7 +595,7 @@ function NotesPanel({ conceptosClave, onClose, onSelectConcept }) {
             <X size={28} />
           </button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {conceptosClave.map((concepto, idx) => (
             <button
@@ -584,10 +608,63 @@ function NotesPanel({ conceptosClave, onClose, onSelectConcept }) {
             </button>
           ))}
         </div>
-        
+
         <p className="text-center text-pixel-blue text-xs mt-6">
           💡 Hacé clic en un concepto para ver más detalles
         </p>
+      </div>
+    </div>
+  );
+}
+
+// Pantalla de Pausa
+function PauseScreen({ onResume, onRestart, onContinue }) {
+  return (
+    <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-pixel-dark border-4 border-pixel-yellow p-8 text-center">
+        {/* Icono de pausa */}
+        <div className="text-6xl mb-6">⏸️</div>
+
+        {/* Título */}
+        <h2 className="text-2xl md:text-3xl text-pixel-yellow mb-2 font-bold">
+          JUEGO PAUSADO
+        </h2>
+        <p className="text-pixel-blue text-sm mb-8">
+          El juego está en pausa
+        </p>
+
+        {/* Botones de acción */}
+        <div className="space-y-4">
+          <button
+            onClick={onContinue}
+            className="pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold hover:bg-pixel-blue transition-colors flex items-center justify-center gap-3"
+          >
+            <Play size={24} />
+            CONTINUAR
+          </button>
+
+          <button
+            onClick={onRestart}
+            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-8 py-4 text-lg font-bold hover:bg-pixel-purple transition-colors flex items-center justify-center gap-3"
+          >
+            <RotateCcw size={24} />
+            REINICIAR NIVEL
+          </button>
+
+          <button
+            onClick={onRestart}
+            className="pixel-btn w-full bg-pixel-dark border-2 border-pixel-blue text-pixel-blue px-8 py-3 text-base font-bold hover:bg-pixel-blue hover:text-pixel-dark transition-colors"
+          >
+            SALIR AL INICIO
+          </button>
+        </div>
+
+        {/* Ayuda */}
+        <div className="mt-8 pt-6 border-t border-pixel-blue">
+          <p className="text-pixel-blue text-xs">
+            💡 Presioná <span className="text-pixel-green font-bold">P</span> o <span className="text-pixel-green font-bold">ESC</span> para pausar/reanudar
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -783,6 +860,7 @@ function App() {
     const saved = localStorage.getItem('pcp-contrast');
     return saved || 'soft';
   });
+  const [isPaused, setIsPaused] = useState(false);
 
   // Apply contrast setting to document
   useEffect(() => {
@@ -797,6 +875,31 @@ function App() {
   const startLevel = () => {
     setCurrentQuestion(0);
     setGameState('question');
+    setIsPaused(false);
+  };
+
+  const handlePause = () => {
+    if (gameState === 'question') {
+      setIsPaused(!isPaused);
+    }
+  };
+
+  const handleContinue = () => {
+    setIsPaused(false);
+  };
+
+  const handleRestartLevel = () => {
+    setCurrentQuestion(0);
+    setIsPaused(false);
+    setGameState('question');
+  };
+
+  const handleExitToHome = () => {
+    setIsPaused(false);
+    setGameState('home');
+    setCurrentLevel(0);
+    setCurrentQuestion(0);
+    setScore({ correct: 0, total: 0 });
   };
 
   const handleAnswer = (isCorrect) => {
@@ -855,11 +958,21 @@ function App() {
           onAnswer={handleAnswer}
           nivelColor={nivelActual.color}
           conceptosClave={nivelActual.conceptosClave}
+          onPause={handlePause}
         />
       )}
 
       {gameState === 'final' && (
         <FinalScreen onRestart={restartGame} />
+      )}
+
+      {/* Pause Screen */}
+      {isPaused && (
+        <PauseScreen
+          onResume={() => setIsPaused(false)}
+          onRestart={handleRestartLevel}
+          onContinue={handleContinue}
+        />
       )}
 
       {/* Settings Panel */}
