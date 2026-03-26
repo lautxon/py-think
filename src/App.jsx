@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles } from 'lucide-react';
+import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle } from 'lucide-react';
 import { gsap } from 'gsap';
 import { gameData } from './data/gameData';
 
@@ -160,11 +160,13 @@ function LevelIntroScreen({ nivel, onStart }) {
 }
 
 // Componente de Pregunta
-function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, nivelColor }) {
+function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, nivelColor, conceptosClave }) {
   const containerRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [showNotes, setShowNotes] = useState(false);
+  const [selectedConcept, setSelectedConcept] = useState(null);
 
   // Resetear estado cuando cambia la pregunta
   useEffect(() => {
@@ -175,17 +177,17 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.question-card', 
+      gsap.fromTo('.question-card',
         { y: -100, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
       );
 
-      gsap.fromTo('.options-list', 
+      gsap.fromTo('.options-list',
         { x: -50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.6, delay: 0.3 }
       );
 
-      gsap.fromTo('.terminal-input', 
+      gsap.fromTo('.terminal-input',
         { scale: 0.9, opacity: 0 },
         { scale: 1, opacity: 1, duration: 0.5, delay: 0.5 }
       );
@@ -199,7 +201,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     if (submitted) return;
 
     const answer = parseInt(inputValue.trim());
-    
+
     if (isNaN(answer) || answer < 1 || answer > 3) {
       setFeedback({
         type: 'error',
@@ -210,10 +212,10 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 
     setSubmitted(true);
     const isCorrect = (answer - 1) === pregunta.correcta;
-    
+
     setFeedback({
       type: isCorrect ? 'success' : 'info',
-      message: isCorrect 
+      message: isCorrect
         ? '✅ ¡Correcto! ' + pregunta.explicacion
         : `❌ La respuesta correcta era la opción ${pregunta.correcta + 1}. ${pregunta.explicacion}`,
       isCorrect
@@ -225,10 +227,24 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div ref={containerRef} className="min-h-screen flex items-center justify-center p-4 md:p-8 relative">
       <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
 
       <div className="question-card max-w-4xl w-full relative z-10">
+        {/* Header con botón de apuntes */}
+        <div className="flex justify-between items-center mb-4">
+          <div className="text-pixel-blue text-sm">
+            Pregunta {numeroPregunta} de {totalPreguntas}
+          </div>
+          <button
+            onClick={() => setShowNotes(true)}
+            className="pixel-btn bg-pixel-dark border-2 border-pixel-green text-pixel-green px-4 py-2 text-sm flex items-center gap-2 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
+          >
+            <BookOpen size={16} />
+            Apuntes
+          </button>
+        </div>
+
         {/* Progress Bar */}
         <div className="mb-6 bg-pixel-gray p-4 border-2 border-pixel-green">
           <div className="flex justify-between text-sm text-pixel-blue mb-2">
@@ -236,7 +252,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
             <span>{Math.round((numeroPregunta / totalPreguntas) * 100)}%</span>
           </div>
           <div className="h-4 bg-pixel-dark border-2 border-pixel-gray">
-            <div 
+            <div
               className={`h-full bg-${nivelColor} transition-all duration-500`}
               style={{ width: `${(numeroPregunta / totalPreguntas) * 100}%` }}
             ></div>
@@ -252,7 +268,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
           {/* Options */}
           <div className="options-list space-y-3 mb-8">
             {pregunta.opciones.map((opcion, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="bg-pixel-dark p-4 border-2 border-pixel-blue hover:border-pixel-green transition-colors cursor-default"
               >
@@ -297,8 +313,8 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
           {/* Feedback */}
           {feedback && (
             <div className={`mt-6 p-4 border-4 ${
-              feedback.type === 'success' 
-                ? 'bg-green-900/30 border-pixel-green' 
+              feedback.type === 'success'
+                ? 'bg-green-900/30 border-pixel-green'
                 : feedback.type === 'error'
                 ? 'bg-red-900/30 border-red-500'
                 : 'bg-blue-900/30 border-pixel-blue'
@@ -311,6 +327,189 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
             </div>
           )}
         </div>
+      </div>
+
+      {/* Panel de Apuntes */}
+      {showNotes && (
+        <NotesPanel
+          conceptosClave={conceptosClave}
+          onClose={() => setShowNotes(false)}
+          onSelectConcept={(concepto) => {
+            setSelectedConcept(concepto);
+          }}
+        />
+      )}
+
+      {/* Tooltip de Concepto */}
+      {selectedConcept && (
+        <ConceptTooltip
+          concepto={selectedConcept}
+          onClose={() => setSelectedConcept(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// Pantalla de Teoría
+function TheoryScreen({ nivel, onStart }) {
+  const containerRef = useRef(null);
+  const [activeTema, setActiveTema] = useState(0);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.theory-card',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+      );
+
+      gsap.fromTo('.theory-item',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.3 }
+      );
+
+      gsap.fromTo('.start-theory-btn',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.8, ease: 'back.out(1.7)' }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const teoria = nivel.teoria;
+
+  return (
+    <div ref={containerRef} className="min-h-screen p-4 md:p-8 overflow-y-auto">
+      <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
+
+      <div className="theory-card max-w-5xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-8 bg-pixel-gray border-4 border-pixel-green p-6">
+          <BookOpen className="text-pixel-green mx-auto mb-4" size={48} />
+          <h2 className="text-xl md:text-2xl text-pixel-green mb-2">{teoria.titulo}</h2>
+          <p className="text-pixel-blue text-sm md:text-base">{teoria.introduccion}</p>
+        </div>
+
+        {/* Temas Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {teoria.temas.map((tema, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveTema(idx)}
+              className={`theory-item p-4 border-2 text-left transition-all ${
+                activeTema === idx
+                  ? 'bg-pixel-green text-pixel-dark border-pixel-green'
+                  : 'bg-pixel-dark border-pixel-blue hover:border-pixel-green'
+              }`}
+            >
+              <h3 className="font-bold text-sm md:text-base mb-2">{tema.titulo}</h3>
+              <p className="text-xs md:text-sm opacity-80 line-clamp-2">{tema.contenido.substring(0, 80)}...</p>
+            </button>
+          ))}
+        </div>
+
+        {/* Contenido del Tema Activo */}
+        <div className="theory-item bg-pixel-dark border-2 border-pixel-purple p-6 mb-6">
+          <h3 className="text-lg md:text-xl text-pixel-purple mb-4 flex items-center gap-2">
+            <Lightbulb size={24} />
+            {teoria.temas[activeTema].titulo}
+          </h3>
+          <p className="text-gray-300 text-sm md:text-base mb-4 leading-relaxed whitespace-pre-line">
+            {teoria.temas[activeTema].contenido}
+          </p>
+          <div className="bg-pixel-gray p-4 border-2 border-pixel-blue">
+            <p className="text-pixel-green text-xs font-mono whitespace-pre-line">
+              {teoria.temas[activeTema].ejemplo}
+            </p>
+          </div>
+        </div>
+
+        {/* Consejo */}
+        <div className="theory-item bg-pixel-green/10 border-2 border-pixel-yellow p-4 mb-6">
+          <p className="text-pixel-yellow text-sm md:text-base">{teoria.consejo}</p>
+        </div>
+
+        {/* Conceptos Clave - Mini tooltips preview */}
+        <div className="theory-item bg-pixel-dark border-2 border-pixel-blue p-4 mb-6">
+          <h4 className="text-pixel-blue text-sm md:text-base mb-3 flex items-center gap-2">
+            <HelpCircle size={20} />
+            Conceptos Clave (disponibles como apuntes durante el juego)
+          </h4>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {nivel.conceptosClave.map((concepto, idx) => (
+              <div
+                key={idx}
+                className="bg-pixel-gray p-2 border border-pixel-green text-xs text-pixel-green"
+              >
+                <span className="font-bold">{concepto.termino}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Start Button */}
+        <button
+          onClick={onStart}
+          className="start-theory-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg md:text-xl font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
+        >
+          <Terminal size={24} />
+          ¡ENTENDIDO! COMENZAR NIVEL
+          <ChevronRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Tooltip para conceptos clave
+function ConceptTooltip({ concepto, onClose }) {
+  return (
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="max-w-md w-full bg-pixel-dark border-4 border-pixel-blue p-6" onClick={e => e.stopPropagation()}>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-pixel-green text-lg font-bold">{concepto.termino}</h3>
+          <button onClick={onClose} className="text-pixel-blue hover:text-pixel-green">
+            <X size={24} />
+          </button>
+        </div>
+        <p className="text-gray-300 text-sm leading-relaxed">{concepto.definicion}</p>
+      </div>
+    </div>
+  );
+}
+
+// Pantalla de Apuntes (Notas consultables)
+function NotesPanel({ conceptosClave, onClose, onSelectConcept }) {
+  return (
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="max-w-2xl w-full max-h-[80vh] overflow-y-auto bg-pixel-dark border-4 border-pixel-green p-6" onClick={e => e.stopPropagation()}>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl text-pixel-green flex items-center gap-2">
+            <BookOpen size={28} />
+            Apuntes del Nivel
+          </h2>
+          <button onClick={onClose} className="text-pixel-blue hover:text-pixel-green">
+            <X size={28} />
+          </button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {conceptosClave.map((concepto, idx) => (
+            <button
+              key={idx}
+              onClick={() => onSelectConcept(concepto)}
+              className="bg-pixel-gray p-4 border-2 border-pixel-blue hover:border-pixel-green transition-all text-left"
+            >
+              <h3 className="text-pixel-green font-bold text-sm mb-1">{concepto.termino}</h3>
+              <p className="text-gray-400 text-xs">{concepto.definicion}</p>
+            </button>
+          ))}
+        </div>
+        
+        <p className="text-center text-pixel-blue text-xs mt-6">
+          💡 Hacé clic en un concepto para ver más detalles
+        </p>
       </div>
     </div>
   );
@@ -427,13 +626,13 @@ function FinalScreen({ onRestart }) {
 
 // Componente Principal App
 function App() {
-  const [gameState, setGameState] = useState('home'); // home, intro, question, final
+  const [gameState, setGameState] = useState('home'); // home, theory, question, final
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState({ correct: 0, total: 0 });
 
   const startGame = () => {
-    setGameState('intro');
+    setGameState('theory');
   };
 
   const startLevel = () => {
@@ -448,14 +647,14 @@ function App() {
     }));
 
     const nivelActual = gameData.niveles[currentLevel];
-    
+
     if (currentQuestion < nivelActual.preguntas.length - 1) {
       setCurrentQuestion(prev => prev + 1);
     } else {
       // Nivel completado
       if (currentLevel < gameData.niveles.length - 1) {
         setCurrentLevel(prev => prev + 1);
-        setGameState('intro');
+        setGameState('theory'); // Mostrar teoría del siguiente nivel
       } else {
         // Juego completado
         setGameState('final');
@@ -479,8 +678,8 @@ function App() {
         <HomeScreen onStart={startGame} />
       )}
 
-      {gameState === 'intro' && nivelActual && (
-        <LevelIntroScreen
+      {gameState === 'theory' && nivelActual && (
+        <TheoryScreen
           nivel={nivelActual}
           onStart={startLevel}
         />
@@ -493,9 +692,10 @@ function App() {
           totalPreguntas={nivelActual.preguntas.length}
           onAnswer={handleAnswer}
           nivelColor={nivelActual.color}
+          conceptosClave={nivelActual.conceptosClave}
         />
       )}
-      
+
       {gameState === 'final' && (
         <FinalScreen onRestart={restartGame} />
       )}

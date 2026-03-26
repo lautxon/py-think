@@ -6,11 +6,46 @@ export const gameData = {
       icono: '🌱',
       color: 'pixel-green',
       descripcion: '¡Bienvenido al mundo de la programación!',
-      industriaInfo: `En la industria tech, los fundamentos son la base de todo desarrollo profesional. 
-      
+      teoria: {
+        titulo: 'Conceptos Fundamentales de Python',
+        introduccion: 'Antes de comenzar, repasemos los conceptos básicos que necesitarás:',
+        temas: [
+          {
+            titulo: 'Variables',
+            contenido: 'Una variable es como una "caja" con etiqueta donde guardas información. En Python, se crea simplemente escribiendo el nombre seguido del valor: mi_variable = 5',
+            ejemplo: 'nombre = "Juan"\nedad = 25\naltura = 1.75'
+          },
+          {
+            titulo: 'Tipos de Datos',
+            contenido: 'Python tiene varios tipos de datos básicos:\n• String (str): texto entre comillas\n• Integer (int): números enteros\n• Float: números con decimales\n• Boolean (bool): True o False',
+            ejemplo: '"Hola"     # String\n42         # Integer\n3.14       # Float\nTrue       # Boolean'
+          },
+          {
+            titulo: 'Operadores',
+            contenido: 'Los operadores te permiten hacer cálculos:\n• + suma\n• - resta\n• * multiplicación\n• / división\n• % módulo (resto)',
+            ejemplo: '10 + 5 = 15\n10 - 5 = 5\n10 * 5 = 50\n10 / 2 = 5.0\n10 % 3 = 1'
+          },
+          {
+            titulo: 'Comentarios',
+            contenido: 'Los comentarios son notas que Python ignora. Se usan con # para explicar tu código.',
+            ejemplo: '# Esto es un comentario\nprint("Hola")  # También aquí'
+          }
+        ],
+        consejo: '💡 Consejo: Practica escribiendo variables con nombres descriptivos. ¡Tu yo del futuro te lo agradecerá!'
+      },
+      industriaInfo: `En la industria tech, los fundamentos son la base de todo desarrollo profesional.
+
 Las empresas buscan programadores que comprendan los conceptos básicos sólidos antes de especializarse.
 
 Este nivel representa el primer año de un desarrollador junior - aquí construyes las bases que te permitirán crecer.`,
+      conceptosClave: [
+        { termino: 'Variable', definicion: 'Contenedor que almacena datos en memoria' },
+        { termino: 'String', definicion: 'Secuencia de caracteres (texto)' },
+        { termino: 'Integer', definicion: 'Número entero sin decimales' },
+        { termino: 'Boolean', definicion: 'Valor verdadero (True) o falso (False)' },
+        { termino: 'Print()', definicion: 'Función que muestra texto en consola' },
+        { termino: 'Comentario', definicion: 'Texto ignorado por Python, usado para explicar código' }
+      ],
       preguntas: [
         {
           pregunta: '¿Qué es una variable en Python?',
@@ -120,11 +155,53 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
       icono: '🚀',
       color: 'pixel-blue',
       descripcion: '¡Domina la lógica de programación!',
+      teoria: {
+        titulo: 'Estructuras de Control y Funciones',
+        introduccion: 'En este nivel aprenderás a controlar el flujo de tu programa:',
+        temas: [
+          {
+            titulo: 'Condicionales (if)',
+            contenido: 'Las estructuras if te permiten ejecutar código solo si se cumple una condición. En Python se usa indentación (espacios) para definir el bloque.',
+            ejemplo: 'if edad >= 18:\n    print("Mayor de edad")\nelse:\n    print("Menor de edad")'
+          },
+          {
+            titulo: 'Bucles (for)',
+            contenido: 'Los bucles for repiten código un número determinado de veces. range(n) genera números del 0 al n-1.',
+            ejemplo: 'for i in range(5):\n    print(i)\n# Imprime: 0, 1, 2, 3, 4'
+          },
+          {
+            titulo: 'Listas',
+            contenido: 'Las listas son colecciones ordenadas y mutables de elementos. Se accede por índice (desde 0).',
+            ejemplo: 'frutas = ["manzana", "banana", "naranja"]\nprint(frutas[0])  # manzana\nfrutas.append("pera")'
+          },
+          {
+            titulo: 'Funciones',
+            contenido: 'Las funciones son bloques de código reutilizables. Se definen con "def" y pueden recibir parámetros.',
+            ejemplo: 'def saludar(nombre):\n    return f"Hola, {nombre}"\n\nprint(saludar("Ana"))  # Hola, Ana'
+          },
+          {
+            titulo: 'Diccionarios',
+            contenido: 'Los diccionarios almacenan pares clave-valor. Son ideales para datos estructurados.',
+            ejemplo: 'persona = {\n    "nombre": "Juan",\n    "edad": 30\n}\nprint(persona["nombre"])  # Juan'
+          }
+        ],
+        consejo: '💡 Consejo: La indentación en Python es obligatoria. Usa 4 espacios consistentemente.'
+      },
       industriaInfo: `En el nivel intermedio, desarrollas habilidades que las empresas valoran en desarrolladores mid-level.
 
 La capacidad de estructurar lógica compleja y resolver problemas eficientemente es lo que separa a los juniors de los mid-levels.
 
 Este nivel representa habilidades de un desarrollador con 2-3 años de experiencia.`,
+      conceptosClave: [
+        { termino: 'if/else', definicion: 'Estructura condicional para tomar decisiones' },
+        { termino: 'for loop', definicion: 'Bucle que itera sobre una secuencia' },
+        { termino: 'range()', definicion: 'Genera una secuencia de números' },
+        { termino: 'Lista', definicion: 'Colección ordenada y mutable de elementos' },
+        { termino: 'Función', definicion: 'Bloque de código reutilizable con def' },
+        { termino: 'Diccionario', definicion: 'Colección de pares clave-valor' },
+        { termino: 'Índice', definicion: 'Posición numérica de un elemento (desde 0)' },
+        { termino: '==', definicion: 'Operador de comparación de igualdad' }
+      ],
       preguntas: [
         {
           pregunta: '¿Qué estructura usas para ejecutar código solo si una condición es verdadera?',
@@ -234,11 +311,59 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
       icono: '💎',
       color: 'pixel-purple',
       descripcion: '¡Piensa como un ingeniero de software!',
+      teoria: {
+        titulo: 'Conceptos Avanzados de Python',
+        introduccion: 'Prepárate para pensar como un ingeniero senior:',
+        temas: [
+          {
+            titulo: 'Complejidad Temporal (Big O)',
+            contenido: 'Mide cómo crece el tiempo de ejecución con el tamaño de entrada. O(1) es constante, O(n) es lineal, O(n²) es cuadrático.',
+            ejemplo: 'O(1): lista[0]     # Acceso directo\nO(n): for x in lista\nO(n²): bucles anidados'
+          },
+          {
+            titulo: 'List Comprehensions',
+            contenido: 'Forma concisa de crear listas en una línea. Es "Pythonic" y más eficiente que bucles tradicionales.',
+            ejemplo: 'cuadrados = [x**2 for x in range(5)]\n# [0, 1, 4, 9, 16]\n\npares = [x for x in nums if x%2==0]'
+          },
+          {
+            titulo: 'Decoradores',
+            contenido: 'Funciones que modifican el comportamiento de otras funciones. Se usan con @ antes de la definición.',
+            ejemplo: '@decorador\ndef mi_funcion():\n    pass\n\n# Equivale a:\nmi_funcion = decorador(mi_funcion)'
+          },
+          {
+            titulo: 'Generadores (yield)',
+            contenido: 'Funciones que producen valores uno a la vez, ahorrando memoria. Usan yield en lugar de return.',
+            ejemplo: 'def contador():\n    n = 0\n    while True:\n        yield n\n        n += 1'
+          },
+          {
+            titulo: 'Context Managers (with)',
+            contenido: 'Manejan automáticamente recursos (archivos, conexiones). Se aseguran de cerrar/liberar recursos.',
+            ejemplo: 'with open("archivo.txt") as f:\n    contenido = f.read()\n# El archivo se cierra automáticamente'
+          },
+          {
+            titulo: 'PEP 8',
+            contenido: 'Guía de estilo oficial de Python. Define convenciones para código legible y consistente.',
+            ejemplo: '# Nombres claros\nusuario_activo = True\nMAX_INTENTOS = 3\n\ndef calcular_total():\n    pass'
+          }
+        ],
+        consejo: '💡 Consejo: Un senior no solo escribe código que funciona, escribe código que otros pueden entender y mantener.'
+      },
       industriaInfo: `El nivel avanzado representa habilidades senior que las empresas buscan para roles de liderazgo técnico.
 
 Los seniors no solo escriben código - diseñan soluciones, optimizan performance y anticipan problemas.
 
 Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ años de experiencia.`,
+      conceptosClave: [
+        { termino: 'Big O', definicion: 'Notación para complejidad algorítmica' },
+        { termino: 'List Comprehension', definicion: 'Sintaxis concisa para crear listas' },
+        { termino: 'Decorator', definicion: 'Función que modifica otra función' },
+        { termino: 'Generator', definicion: 'Función que usa yield para iterar' },
+        { termino: 'Context Manager', definicion: 'Maneja recursos con with statement' },
+        { termino: 'PEP 8', definicion: 'Guía de estilo oficial de Python' },
+        { termino: 'Duck Typing', definicion: 'Importa comportamiento, no el tipo' },
+        { termino: 'GIL', definicion: 'Global Interpreter Lock limita threads' },
+        { termino: 'Recursividad', definicion: 'Función que se llama a sí misma' }
+      ],
       preguntas: [
         {
           pregunta: '¿Qué es la complejidad temporal?',
