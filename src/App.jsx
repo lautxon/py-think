@@ -222,17 +222,28 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     setSubmitted(true);
     const isCorrect = (answer - 1) === pregunta.correcta;
 
+    const feedbackMessage = isCorrect
+      ? '✅ ¡Correcto! ' + pregunta.explicacion
+      : `❌ La respuesta correcta era la opción ${pregunta.correcta + 1}. ${pregunta.explicacion}`;
+
     setFeedback({
       type: isCorrect ? 'success' : 'info',
-      message: isCorrect
-        ? '✅ ¡Correcto! ' + pregunta.explicacion
-        : `❌ La respuesta correcta era la opción ${pregunta.correcta + 1}. ${pregunta.explicacion}`,
+      message: feedbackMessage,
       isCorrect
     });
 
+    // Calcular tiempo dinámico según longitud del feedback
+    // Fórmula: base (2000ms) + palabras × 150ms
+    // Mínimo: 3000ms, Máximo: 10000ms
+    const palabras = feedbackMessage.split(/\s+/).length;
+    const tiempoDinamico = Math.min(
+      Math.max(2000 + (palabras * 150), 3000),
+      10000
+    );
+
     setTimeout(() => {
       onAnswer(isCorrect);
-    }, 7000);
+    }, tiempoDinamico);
   };
 
   return (
