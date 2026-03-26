@@ -12,26 +12,46 @@ export const gameData = {
         temas: [
           {
             titulo: 'Variables',
-            contenido: 'Una variable es como una "caja" con etiqueta donde guardas información. En Python, se crea simplemente escribiendo el nombre seguido del valor: mi_variable = 5',
-            ejemplo: 'nombre = "Juan"\nedad = 25\naltura = 1.75'
+            queEs: 'Una variable es un espacio en la memoria de la computadora donde guardamos información. Podés pensar en ella como una "caja" con una etiqueta (nombre) que contiene un valor.',
+            queHace: 'Almacena datos para que tu programa pueda usarlos, modificarlos y recuperarlos más tarde.',
+            comoLoHace: 'Python reserva un espacio en memoria y le asigna un nombre (identificador). Cuando usás ese nombre, Python accede al valor guardado.',
+            paraQueLoHace: 'Permite escribir programas dinámicos que pueden trabajar con diferentes valores sin tener que reescribir el código. Es fundamental para cualquier operación.',
+            sintaxis: 'nombre_variable = valor\n\n# Ejemplos:\nnombre = "María"\nedad = 25\naltura = 1.68\nes_estudiante = True',
+            errorComun: 'Usar nombres que no describen el contenido o empezar con números:\n❌ 1nombre = "Juan"  # Error\n❌ mi-var = 5       # Error (el guión no está permitido)',
+            ejemploCorrecto: '# Nombres descriptivos:\n✅ nombre_usuario = "Juan"\n✅ edad_usuario = 30\n✅ precio_final = 100.50\n\n# Reglas:\n# - Sin espacios (usá guión bajo: _)\n# - Sin empezar con números\n# - Distingue mayúsculas/minúsculas'
           },
           {
             titulo: 'Tipos de Datos',
-            contenido: 'Python tiene varios tipos de datos básicos:\n• String (str): texto entre comillas\n• Integer (int): números enteros\n• Float: números con decimales\n• Boolean (bool): True o False',
-            ejemplo: '"Hola"     # String\n42         # Integer\n3.14       # Float\nTrue       # Boolean'
+            queEs: 'Los tipos de datos son categorías que definen qué tipo de información puede almacenar una variable. Python tiene varios tipos básicos.',
+            queHace: 'Clasifica los datos para que Python sepa cómo operar con ellos (no podés sumar texto con números de la misma forma).',
+            comoLoHace: 'Python detecta automáticamente el tipo según el valor asignado (tipado dinámico). Cada tipo tiene operaciones específicas.',
+            paraQueLoHace: 'Permite validar operaciones, evitar errores y escribir código más predecible. Cada tipo se comporta de forma distinta.',
+            sintaxis: '# String (texto):\nmensaje = "Hola Mundo"\n\n# Integer (entero):\ncantidad = 42\n\n# Float (decimal):\nprecio = 19.99\n\n# Boolean (lógico):\nes_activo = True\nesta_vacio = False',
+            errorComun: 'Confundir strings con números:\n❌ edad = "25"  # Es texto, no número\n❌ print(edad + 5)  # Error: no podés sumar texto con número',
+            ejemploCorrecto: '# Tipos correctos:\n✅ edad = 25           # Integer\n✅ precio = 19.99      # Float\n✅ nombre = "Ana"      # String\n✅ activo = True       # Boolean\n\n# Operaciones válidas:\n✅ print(edad + 5)     # 30\n✅ print(nombre + " López")  # "Ana López"'
           },
           {
             titulo: 'Operadores',
-            contenido: 'Los operadores te permiten hacer cálculos:\n• + suma\n• - resta\n• * multiplicación\n• / división\n• % módulo (resto)',
-            ejemplo: '10 + 5 = 15\n10 - 5 = 5\n10 * 5 = 50\n10 / 2 = 5.0\n10 % 3 = 1'
+            queEs: 'Símbolos especiales que realizan operaciones con valores y variables. Son los "verbos" del lenguaje de programación.',
+            queHace: 'Transforma, compara o combina datos. Permite hacer cálculos matemáticos y comparaciones lógicas.',
+            comoLoHace: 'Python evalúa los operandos (valores a cada lado) y aplica la operación definida por el símbolo.',
+            paraQueLoHace: 'Sin operadores, no podrías hacer cálculos, comparaciones ni tomar decisiones en tu código.',
+            sintaxis: '# Aritméticos:\nsuma = 10 + 5       # 15\nresta = 10 - 5      # 5\nmultiplicacion = 10 * 5  # 50\ndivision = 10 / 3   # 3.333...\nmodulo = 10 % 3     # 1 (resto)\npotencia = 2 ** 3   # 8\n\n# Comparación:\n10 > 5   # True\n10 == 10 # True\n10 != 5  # True',
+            errorComun: 'Confundir asignación con comparación:\n❌ if x = 5:     # Error: = es para asignar\n❌ print(x = 5)  # Error\n\n✅ if x == 5:    # Correcto: == compara\n✅ print(x == 5) # Devuelve True o False',
+            ejemploCorrecto: '# Operaciones correctas:\n✅ precio = 100\n✅ descuento = 10\n✅ final = precio - descuento  # 90\n\n✅ cantidad = 5\n✅ precio_unitario = 20\n✅ total = cantidad * precio_unitario  # 100\n\n✅ es_mayor = edad >= 18  # True si edad >= 18'
           },
           {
             titulo: 'Comentarios',
-            contenido: 'Los comentarios son notas que Python ignora. Se usan con # para explicar tu código.',
-            ejemplo: '# Esto es un comentario\nprint("Hola")  # También aquí'
+            queEs: 'Texto en el código que Python ignora completamente. Son notas para humanos, no para la computadora.',
+            queHace: 'Documenta el código, explica decisiones complejas, desactiva código temporalmente y mejora la legibilidad.',
+            comoLoHace: 'Todo lo que sigue al símbolo # en una línea es ignorado por el intérprete de Python.',
+            paraQueLoHace: 'Tu código será leído más veces del que será escrito (por vos y otros). Los comentarios hacen que sea entendible meses después.',
+            sintaxis: '# Esto es un comentario de una línea\n\nprint("Hola")  # También al final de una línea\n\n"""\nEsto es un comentario\nmultilínea (docstring).\nSe usa para documentar funciones.\n"""\n\n# Sección: Variables\nnombre = "Juan"  # Guardamos el nombre',
+            errorComun: '❌ Comentar lo obvio:\n   x = 5  # Asignamos 5 a x  (¡Esto no ayuda!)\n\n❌ No comentar lo complejo:\n   # 50 líneas de lógica complicada sin explicar\n\n✅ Comentar el POR QUÉ, no el QUÉ:\n   # Usamos bubble sort porque la lista es pequeña\n   # y necesitamos estabilidad en el orden',
+            ejemploCorrecto: '# Buen uso de comentarios:\n\n# Calcular el precio final con IVA\nprecio_sin_iva = 100\niva = 0.21  # 21% de IVA en Argentina\nprecio_final = precio_sin_iva * (1 + iva)\n\n# Verificar si el usuario es mayor de edad\nif edad >= 18:\n    print("Acceso permitido")\nelse:\n    print("Acceso denegado - menor de edad")'
           }
         ],
-        consejo: '💡 Consejo: Practica escribiendo variables con nombres descriptivos. ¡Tu yo del futuro te lo agradecerá!'
+        consejo: '💡 Consejo: Escribí código como si la próxima persona que lo lea sea un psicópata que sabe dónde vivís. Usá nombres descriptivos y comentá el POR QUÉ, no el QUÉ.'
       },
       industriaInfo: `En la industria tech, los fundamentos son la base de todo desarrollo profesional.
 
@@ -161,31 +181,56 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
         temas: [
           {
             titulo: 'Condicionales (if)',
-            contenido: 'Las estructuras if te permiten ejecutar código solo si se cumple una condición. En Python se usa indentación (espacios) para definir el bloque.',
-            ejemplo: 'if edad >= 18:\n    print("Mayor de edad")\nelse:\n    print("Menor de edad")'
+            queEs: 'Una estructura que permite ejecutar diferentes bloques de código según se cumpla o no una condición.',
+            queHace: 'Toma decisiones en tu programa. Ejecuta un bloque de código solo si la condición es verdadera.',
+            comoLoHace: 'Evalúa una expresión booleana (True/False). Si es True, ejecuta el bloque del if. Si hay else y la condición es False, ejecuta el bloque del else.',
+            paraQueLoHace: 'Permite crear programas que responden diferente según los datos de entrada. Es la base de la lógica de programación.',
+            sintaxis: 'if condicion:\n    # Código si es True\n    print("Se cumple")\nelse:\n    # Código si es False\n    print("No se cumple")\n\n# Ejemplo:\nif edad >= 18:\n    print("Mayor de edad")\nelse:\n    print("Menor de edad")',
+            errorComun: '❌ Olvidar los dos puntos:\n   if edad >= 18  # Error: faltan :\n   \n❌ Usar = en vez de ==:\n   if x = 5:  # Error: = asigna, == compara\n   \n❌ Mala indentación:\n   if True:\n   print("Hola")  # Error: debe estar indentado',
+            ejemploCorrecto: '# Condicional correcto:\nif temperatura > 25:\n    print("Hace calor")\n    print("Tomar agua")  # Misma indentación\nelse:\n    print("Temperatura normal")\n\n# Múltiples condiciones:\nif nota >= 90:\n    print("Excelente")\nelif nota >= 70:\n    print("Aprobado")\nelse:\n    print("Reprobado")'
           },
           {
             titulo: 'Bucles (for)',
-            contenido: 'Los bucles for repiten código un número determinado de veces. range(n) genera números del 0 al n-1.',
-            ejemplo: 'for i in range(5):\n    print(i)\n# Imprime: 0, 1, 2, 3, 4'
+            queEs: 'Una estructura que repite un bloque de código un número determinado de veces.',
+            queHace: 'Itera (recorre) sobre una secuencia de elementos, ejecutando el mismo código para cada uno.',
+            comoLoHace: 'Toma cada elemento de la secuencia, lo asigna a una variable temporal y ejecuta el bloque. Se repite hasta agotar la secuencia.',
+            paraQueLoHace: 'Automatiza tareas repetitivas. En lugar de escribir el mismo código 100 veces, lo escribís una vez dentro del bucle.',
+            sintaxis: 'for variable in secuencia:\n    # Código a repetir\n    print(variable)\n\n# Con range():\nfor i in range(5):  # 0, 1, 2, 3, 4\n    print(i)\n\n# Con lista:\nfor fruta in ["manzana", "banana"]:\n    print(fruta)',
+            errorComun: '❌ Olvidar los dos puntos:\n   for i in range(5)  # Error: faltan :\n   \n❌ Intentar modificar la lista mientras iteras:\n   for x in lista:\n       lista.append(x)  # ¡Peligro! Bucle infinito\n   \n❌ Usar range incorrectamente:\n   for i in range(1, 5):\n       print(i)  # Imprime 1,2,3,4 (NO incluye 5)',
+            ejemploCorrecto: '# Bucle for correcto:\nfor numero in range(3):\n    print(f"Número: {numero}")\n# Salida: Número: 0, 1, 2\n\n# Recorrer una lista:\nfrutas = ["manzana", "pera", "naranja"]\nfor fruta in frutas:\n    print(f"Me gusta la {fruta}")\n\n# Con índice y valor:\nfor i, fruta in enumerate(frutas):\n    print(f"{i}: {fruta}")'
           },
           {
             titulo: 'Listas',
-            contenido: 'Las listas son colecciones ordenadas y mutables de elementos. Se accede por índice (desde 0).',
-            ejemplo: 'frutas = ["manzana", "banana", "naranja"]\nprint(frutas[0])  # manzana\nfrutas.append("pera")'
+            queEs: 'Una colección ordenada y mutable (modificable) de elementos. Puede contener cualquier tipo de dato.',
+            queHace: 'Almacena múltiples valores en una sola variable. Permite agregar, eliminar y modificar elementos.',
+            comoLoHace: 'Python guarda los elementos en posiciones consecutivas de memoria. Cada posición tiene un índice numérico desde 0.',
+            paraQueLoHace: 'Organiza datos relacionados. Permite trabajar con colecciones de elementos de forma eficiente.',
+            sintaxis: '# Crear lista:\nmi_lista = [1, 2, 3, 4]\n\n# Acceder:\nprimer = mi_lista[0]      # 1\nultimo = mi_lista[-1]     # 4\n\n# Modificar:\nmi_lista[0] = 10\n\n# Métodos:\nmi_lista.append(5)        # Agrega al final\nmi_lista.insert(0, 0)     # Inserta en posición\nmi_lista.remove(3)        # Elimina elemento\nlongitud = len(mi_lista)  # Tamaño',
+            errorComun: '❌ Índice fuera de rango:\n   lista = [1, 2, 3]\n   print(lista[3])  # Error: máximo índice es 2\n   \n❌ Copiar lista incorrectamente:\n   lista1 = [1, 2, 3]\n   lista2 = lista1  # ¡Referencia, no copia!\n   lista2.append(4)  # ¡Modifica lista1 también!\n   \n✅ Copia correcta:\n   lista2 = lista1.copy()',
+            ejemploCorrecto: '# Lista correcta:\nnumeros = [10, 20, 30, 40, 50]\n\n# Acceder:\nprint(numeros[0])    # 10\nprint(numeros[-1])   # 50\nprint(numeros[1:3])  # [20, 30]\n\n# Operaciones:\nnumeros.append(60)           # [10, 20, 30, 40, 50, 60]\nnumeros.extend([70, 80])     # Agrega múltiples\nnumeros.pop()                # Elimina último\ndel numeros[0]               # Elimina por índice'
           },
           {
             titulo: 'Funciones',
-            contenido: 'Las funciones son bloques de código reutilizables. Se definen con "def" y pueden recibir parámetros.',
-            ejemplo: 'def saludar(nombre):\n    return f"Hola, {nombre}"\n\nprint(saludar("Ana"))  # Hola, Ana'
+            queEs: 'Un bloque de código reutilizable que realiza una tarea específica. Tiene un nombre y puede recibir parámetros.',
+            queHace: 'Encapsula lógica para poder usarla múltiples veces sin repetir código. Puede devolver un resultado.',
+            comoLoHace: 'Se define con "def". Cuando se llama, Python ejecuta el código dentro y opcionalmente devuelve un valor con "return".',
+            paraQueLoHace: 'Organiza el código en partes lógicas. Facilita el mantenimiento, testing y reutilización. Es fundamental en programación profesional.',
+            sintaxis: 'def nombre_funcion(param1, param2):\n    # Código de la función\n    resultado = param1 + param2\n    return resultado\n\n# Llamar:\nvalor = nombre_funcion(5, 3)\n\n# Ejemplo:\ndef saludar(nombre):\n    return f"Hola, {nombre}"\n\nprint(saludar("Ana"))  # Hola, Ana',
+            errorComun: '❌ Olvidar return:\n   def sumar(a, b):\n       a + b  # Error: no devuelve nada\n   \n❌ Usar variable no definida:\n   def mi_func():\n       print(x)  # Error si x no está definida\n   \n❌ Confundir parámetro con argumento:\n   def func(x):  # x es parámetro\n       pass\n   func(5)       # 5 es argumento',
+            ejemploCorrecto: '# Función completa:\ndef calcular_area_rectangulo(base, altura):\n    """Calcula el área de un rectángulo."""\n    area = base * altura\n    return area\n\n# Uso:\nresultado = calcular_area_rectangulo(5, 3)\nprint(f"Área: {resultado}")  # Área: 15\n\n# Con valor por defecto:\ndef saludar(nombre="Invitado"):\n    return f"Hola, {nombre}"'
           },
           {
             titulo: 'Diccionarios',
-            contenido: 'Los diccionarios almacenan pares clave-valor. Son ideales para datos estructurados.',
-            ejemplo: 'persona = {\n    "nombre": "Juan",\n    "edad": 30\n}\nprint(persona["nombre"])  # Juan'
+            queEs: 'Una colección de pares clave-valor. Las claves son únicas y permiten acceder a los valores.',
+            queHace: 'Almacena datos estructurados donde cada valor tiene una etiqueta (clave) para identificarlo.',
+            comoLoHace: 'Python usa una tabla hash interna. Las claves deben ser inmutables (strings, números, tuplas).',
+            paraQueLoHace: 'Representa datos del mundo real (personas, productos, configuraciones). Es la estructura para datos JSON/APIs.',
+            sintaxis: '# Crear:\npersona = {\n    "nombre": "Juan",\n    "edad": 30,\n    "ciudad": "Buenos Aires"\n}\n\n# Acceder:\nnombre = persona["nombre"]\n\n# Modificar:\npersona["edad"] = 31\n\n# Agregar:\npersona["email"] = "juan@email.com"\n\n# Eliminar:\ndel persona["ciudad"]',
+            errorComun: '❌ Acceder a clave inexistente:\n   persona = {"nombre": "Juan"}\n   print(persona["edad"])  # Error: KeyError\n   \n✅ Usar get():\n   print(persona.get("edad"))  # None (no error)\n   print(persona.get("edad", 0))  # 0 (valor por defecto)\n   \n❌ Usar clave mutable:\n   dicc = {[1, 2]: "valor"}  # Error: lista no es hashable',
+            ejemploCorrecto: '# Diccionario correcto:\nusuario = {\n    "id": 1,\n    "nombre": "María",\n    "activo": True,\n    "roles": ["admin", "editor"]\n}\n\n# Acceder seguro:\nnombre = usuario.get("nombre", "Desconocido")\n\n# Recorrer:\nfor clave, valor in usuario.items():\n    print(f"{clave}: {valor}")\n\n# Verificar existe:\nif "nombre" in usuario:\n    print("Nombre existe")'
           }
         ],
-        consejo: '💡 Consejo: La indentación en Python es obligatoria. Usa 4 espacios consistentemente.'
+        consejo: '💡 Consejo: La indentación en Python es obligatoria. Usa 4 espacios consistentemente. Un error de indentación cambia completamente la lógica del programa.'
       },
       industriaInfo: `En el nivel intermedio, desarrollas habilidades que las empresas valoran en desarrolladores mid-level.
 
@@ -317,36 +362,66 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
         temas: [
           {
             titulo: 'Complejidad Temporal (Big O)',
-            contenido: 'Mide cómo crece el tiempo de ejecución con el tamaño de entrada. O(1) es constante, O(n) es lineal, O(n²) es cuadrático.',
-            ejemplo: 'O(1): lista[0]     # Acceso directo\nO(n): for x in lista\nO(n²): bucles anidados'
+            queEs: 'Una notación matemática que describe cómo crece el tiempo de ejecución de un algoritmo según el tamaño de entrada (n).',
+            queHace: 'Mide la eficiencia de un algoritmo. Permite comparar soluciones y predecir el rendimiento con datos grandes.',
+            comoLoHace: 'Analiza el peor caso posible. Cuenta operaciones básicas en función de n. Se expresa como O(f(n)).',
+            paraQueLoHace: 'Para elegir el algoritmo más eficiente. En la industria, con millones de usuarios, la diferencia entre O(n) y O(n²) es abismal.',
+            sintaxis: '# O(1) - Constante (mejor):\nacceso = lista[0]\n\n# O(log n) - Logarítmica:\nbusqueda_binaria(lista, valor)\n\n# O(n) - Lineal (buena):\nfor elemento in lista:\n    procesar(elemento)\n\n# O(n²) - Cuadrática (lenta):\nfor i in lista:\n    for j in lista:\n        comparar(i, j)',
+            errorComun: '❌ Ignorar la complejidad en bucles anidados:\n   for i in range(n):\n       for j in range(n):  # ¡O(n²)!\n           pass\n   \n❌ Usar lista cuando necesitás búsqueda rápida:\n   if elemento in lista:  # O(n) - lento\n   \n✅ Usar set para búsquedas:\n   if elemento in conjunto:  # O(1) - rápido',
+            ejemploCorrecto: '# Elegir estructura según complejidad:\n\n# Búsqueda frecuente → usar set/dict\nbusqueda = {1, 2, 3, 4, 5}\nif 3 in busqueda:  # O(1)\n    print("Encontrado")\n\n# Datos ordenados → binary search\n# Datos pequeños → algoritmo simple está bien\n\n# Priorizar legibilidad primero,\noptimizar solo si es necesario'
           },
           {
             titulo: 'List Comprehensions',
-            contenido: 'Forma concisa de crear listas en una línea. Es "Pythonic" y más eficiente que bucles tradicionales.',
-            ejemplo: 'cuadrados = [x**2 for x in range(5)]\n# [0, 1, 4, 9, 16]\n\npares = [x for x in nums if x%2==0]'
+            queEs: 'Una sintaxis concisa para crear listas transformando o filtrando elementos en una sola línea.',
+            queHace: 'Crea listas de forma más legible y eficiente que los bucles for tradicionales.',
+            comoLoHace: 'Evalúa una expresión para cada elemento en una secuencia, opcionalmente filtrando con una condición.',
+            paraQueLoHace: 'Escribir código más "Pythonic". Es más rápido que bucles for (optimizado internamente) y más legible.',
+            sintaxis: '# Sintaxis básica:\nnueva_lista = [expresion for elemento in secuencia]\n\n# Con condición:\npares = [x for x in numeros if x % 2 == 0]\n\n# Transformación:\ncuadrados = [x**2 for x in range(10)]\n\n# Anidada:\nmatriz = [[i*j for j in range(3)] for i in range(3)]',
+            errorComun: '❌ Hacerlo muy complejo:\n   resultado = [x*y*z for x in lista1 for y in lista2 for z in lista3 if x>0 if y>0]\n   # ¡Ilegible! Usar bucles normales\n   \n❌ Efectos secundarios:\n   [print(x) for x in lista]  # Mal uso de comprehension\n   # Usar bucle for normal',
+            ejemploCorrecto: '# List comprehension correcto:\n\n# Filtrar números positivos\npositivos = [x for x in numeros if x > 0]\n\n# Transformar a mayúsculas\nnombres = [nombre.upper() for nombre in lista]\n\n# Con condición y transformación\npares_cuadrado = [x**2 for x in range(20) if x % 2 == 0]\n\n# Legibilidad primero:\n# Si no cabe en una línea clara, usar for normal'
           },
           {
             titulo: 'Decoradores',
-            contenido: 'Funciones que modifican el comportamiento de otras funciones. Se usan con @ antes de la definición.',
-            ejemplo: '@decorador\ndef mi_funcion():\n    pass\n\n# Equivale a:\nmi_funcion = decorador(mi_funcion)'
+            queEs: 'Funciones que reciben otra función y extienden su comportamiento sin modificarla explícitamente.',
+            queHace: 'Agrega funcionalidad extra a funciones (logging, validación, caching, autenticación).',
+            comoLoHace: 'Envuelve (wraps) la función original. Se usa el símbolo @ antes de la definición.',
+            paraQueLoHace: 'Separar preocupaciones. El código de logging/validación no se mezcla con la lógica principal. Esencial en frameworks como Flask.',
+            sintaxis: '# Decorador básico:\n@decorador\ndef mi_funcion():\n    pass\n\n# Equivale a:\nmi_funcion = decorador(mi_funcion)\n\n# Con parámetros:\ndef mi_decorador(func):\n    def wrapper(*args, **kwargs):\n        print("Antes")\n        resultado = func(*args, **kwargs)\n        print("Después")\n        return resultado\n    return wrapper\n\n@mi_decorador\ndef saludar():\n    print("Hola")',
+            errorComun: '❌ Olvidar functools.wraps:\n   def decorador(f):\n       def wrapper(*args): ...\n       return wrapper  # Pierde metadata de f\n   \n✅ Con wraps:\n   from functools import wraps\n   def decorador(f):\n       @wraps(f)\n       def wrapper(*args): ...\n       return wrapper\n   \n❌ Decoradores muy complejos:\n   # Si necesita 5 niveles, considerar una clase',
+            ejemploCorrecto: '# Decorador útil - Logging:\nfrom functools import wraps\n\ndef loguear(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        print(f"Llamando a {func.__name__}")\n        resultado = func(*args, **kwargs)\n        print(f"Resultado: {resultado}")\n        return resultado\n    return wrapper\n\n@loguear\ndef sumar(a, b):\n    return a + b\n\nsumar(3, 5)  # Loguea automáticamente'
           },
           {
             titulo: 'Generadores (yield)',
-            contenido: 'Funciones que producen valores uno a la vez, ahorrando memoria. Usan yield en lugar de return.',
-            ejemplo: 'def contador():\n    n = 0\n    while True:\n        yield n\n        n += 1'
+            queEs: 'Funciones especiales que producen una secuencia de valores perezosamente (uno a la vez, bajo demanda).',
+            queHace: 'Genera valores iterables sin almacenarlos todos en memoria. Ideal para secuencias infinitas o muy grandes.',
+            comoLoHace: 'Usa yield en lugar de return. Cada yield pausa la función y guarda el estado. La próxima llamada continúa donde quedó.',
+            paraQueLoHace: 'Ahorro masivo de memoria. Con millones de elementos, una lista ocupa GBs, un generator ocupa bytes.',
+            sintaxis: '# Generator básico:\ndef contador():\n    n = 0\n    while True:\n        yield n  # Pausa y devuelve n\n        n += 1\n\n# Uso:\ngen = contador()\nprint(next(gen))  # 0\nprint(next(gen))  # 1\n\n# Generator expression:\ncuadrados = (x**2 for x in range(1000000))',
+            errorComun: '❌ Intentar acceder por índice:\n   gen = (x for x in range(10))\n   print(gen[0])  # Error: no es indexable\n   \n❌ Recorrer múltiples veces:\n   gen = (x for x in range(10))\n   list(gen)  # [0,1,2...]\n   list(gen)  # [] ¡vacío! Se agotó\n   \n✅ Convertir a lista si necesitás reusar:\n   lista = list(gen)',
+            ejemploCorrecto: '# Generator para archivo grande:\ndef leer_lineas(archivo):\n    with open(archivo) as f:\n        for linea in f:\n            yield linea.strip()\n\n# Uso eficiente de memoria:\nfor linea in leer_lineas("grande.txt"):\n    procesar(linea)\n\n# Generator expression:\nsuma = sum(x**2 for x in range(1000000))\n# No crea lista intermedia'
           },
           {
             titulo: 'Context Managers (with)',
-            contenido: 'Manejan automáticamente recursos (archivos, conexiones). Se aseguran de cerrar/liberar recursos.',
-            ejemplo: 'with open("archivo.txt") as f:\n    contenido = f.read()\n# El archivo se cierra automáticamente'
+            queEs: 'Objetos que manejan automáticamente la configuración y limpieza de recursos.',
+            queHace: 'Garantiza que los recursos se liberen correctamente, incluso si hay excepciones.',
+            comoLoHace: 'Implementa __enter__ (setup) y __exit__ (cleanup). El bloque with asegura que __exit__ se llame siempre.',
+            paraQueLoHace: 'Prevenir memory leaks y recursos huérfanos. Archivos que no se cierran, conexiones abiertas, locks no liberados.',
+            sintaxis: '# Uso básico:\nwith open("archivo.txt") as f:\n    contenido = f.read()\n# Archivo se cierra automáticamente\n\n# Múltiples recursos:\nwith open("in.txt") as entrada, open("out.txt", "w") as salida:\n    salida.write(entrada.read())\n\n# Crear context manager:\nfrom contextlib import contextmanager\n\n@contextmanager\ndef mi_recurso():\n    recurso = adquirir()\n    try:\n        yield recurso\n    finally:\n        liberar(recurso)',
+            errorComun: '❌ Olvidar with y dejar archivo abierto:\n   f = open("archivo.txt")\n   contenido = f.read()\n   # ¡Nunca se cierra si hay error!\n   \n✅ Siempre usar with:\n   with open("archivo.txt") as f:\n       contenido = f.read()\n   # Se cierra automáticamente\n   \n❌ Anidar with innecesariamente:\n   with open("a.txt") as a:\n       with open("b.txt") as b:\n           pass\n   \n✅ Usar coma para múltiples:\n   with open("a.txt") as a, open("b.txt") as b:\n       pass',
+            ejemploCorrecto: '# Context managers comunes:\n\n# Archivos:\nwith open("datos.txt") as f:\n    datos = f.read()\n\n# Locks (threading):\nwith lock:\n    # Sección crítica\n    compartir_recurso()\n\n# Conexiones database:\nwith conexion.cursor() as cursor:\n    cursor.execute(query)\n\n# Crear el tuyo:\nfrom contextlib import contextmanager\n\n@contextmanager\ndef timer():\n    inicio = time.time()\n    yield\n    print(f"Tiempo: {time.time() - inicio}s")'
           },
           {
             titulo: 'PEP 8',
-            contenido: 'Guía de estilo oficial de Python. Define convenciones para código legible y consistente.',
-            ejemplo: '# Nombres claros\nusuario_activo = True\nMAX_INTENTOS = 3\n\ndef calcular_total():\n    pass'
+            queEs: 'Python Enhancement Proposal #8. La guía de estilo oficial para código Python.',
+            queHace: 'Define convenciones para escribir código legible y consistente.',
+            comoLoHace: 'Establece reglas para nombres, indentación, espacios en blanco, comentarios, imports y más.',
+            paraQueLoHace: 'Código consistente es más fácil de leer, mantener y colaborar. Las empresas lo exigen en code reviews.',
+            sintaxis: '# Nombres:\nvariable_local = "valor"       # snake_case\nCONSTANTE_GLOBAL = 42          # UPPER_CASE\nClaseNombre = PascalCase         # PascalCase\n\n# Indentación: 4 espacios (NO tabs)\ndef funcion():\n    if condicion:\n        hacer_algo()\n\n# Espacios en blanco:\nresultado = suma(a, b)  # Bien\nresultado=suma(a,b)     # Mal\n\n# Imports: al inicio, ordenados\nimport os\nimport sys\nfrom collections import defaultdict',
+            errorComun: '❌ Nombres inconsistentes:\n   usuarioActivo = True    # camelCase (mal)\n   usuario_activo = True   # snake_case (bien)\n   \n❌ Líneas muy largas:\n   resultado = funcion_muy_larga_que_hace_algo_complejo_con_muchos_parametros(a, b, c, d, e, f)\n   \n✅ Dividir en múltiples líneas:\n   resultado = funcion_muy_larga(\n       a, b, c,\n       d, e, f\n   )\n   \n❌ Imports desordenados:\n   from x import y\n   import os\n   from a import b',
+            ejemploCorrecto: '# Código PEP 8 compliant:\n\n"""Módulo de ejemplo siguiendo PEP 8."""\n\nimport os\nimport sys\nfrom collections import defaultdict\n\nMAX_INTENTOS = 3\n\ndef calcular_promedio(numeros):\n    """Calcula el promedio de una lista de números."""\n    if not numeros:\n        return 0\n    return sum(numeros) / len(numeros)\n\nclass Calculadora:\n    """Calculadora básica."""\n    \n    def __init__(self, valor_inicial=0):\n        self.valor = valor_inicial\n    \n    def sumar(self, numero):\n        self.valor += numero\n        return self'
           }
         ],
-        consejo: '💡 Consejo: Un senior no solo escribe código que funciona, escribe código que otros pueden entender y mantener.'
+        consejo: '💡 Consejo: Un senior no solo escribe código que funciona, escribe código que otros pueden entender y mantener. La simplicidad es sofisticación.'
       },
       industriaInfo: `El nivel avanzado representa habilidades senior que las empresas buscan para roles de liderazgo técnico.
 

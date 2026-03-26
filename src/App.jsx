@@ -355,6 +355,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 function TheoryScreen({ nivel, onStart }) {
   const containerRef = useRef(null);
   const [activeTema, setActiveTema] = useState(0);
+  const [expandedSection, setExpandedSection] = useState(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -378,6 +379,17 @@ function TheoryScreen({ nivel, onStart }) {
   }, []);
 
   const teoria = nivel.teoria;
+  const temaActual = teoria.temas[activeTema];
+
+  const secciones = [
+    { key: 'queEs', titulo: '¿Qué es?', icono: '📖' },
+    { key: 'queHace', titulo: '¿Qué hace?', icono: '⚙️' },
+    { key: 'comoLoHace', titulo: '¿Cómo lo hace?', icono: '🔧' },
+    { key: 'paraQueLoHace', titulo: '¿Para qué lo hace?', icono: '🎯' },
+    { key: 'sintaxis', titulo: 'Sintaxis', icono: '💻' },
+    { key: 'errorComun', titulo: '⚠️ Error común', icono: '❌' },
+    { key: 'ejemploCorrecto', titulo: '✅ Ejemplo correcto', icono: '✓' }
+  ];
 
   return (
     <div ref={containerRef} className="min-h-screen p-4 md:p-8 overflow-y-auto">
@@ -391,37 +403,61 @@ function TheoryScreen({ nivel, onStart }) {
           <p className="text-pixel-blue text-sm md:text-base">{teoria.introduccion}</p>
         </div>
 
-        {/* Temas Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {/* Temas Grid - Selectores */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {teoria.temas.map((tema, idx) => (
             <button
               key={idx}
-              onClick={() => setActiveTema(idx)}
+              onClick={() => {
+                setActiveTema(idx);
+                setExpandedSection(null);
+              }}
               className={`theory-item p-4 border-2 text-left transition-all ${
                 activeTema === idx
                   ? 'bg-pixel-green text-pixel-dark border-pixel-green'
                   : 'bg-pixel-dark border-pixel-blue hover:border-pixel-green'
               }`}
             >
-              <h3 className="font-bold text-sm md:text-base mb-2">{tema.titulo}</h3>
-              <p className="text-xs md:text-sm opacity-80 line-clamp-2">{tema.contenido.substring(0, 80)}...</p>
+              <h3 className="font-bold text-sm md:text-base mb-1">{tema.titulo}</h3>
             </button>
           ))}
         </div>
 
-        {/* Contenido del Tema Activo */}
-        <div className="theory-item bg-pixel-dark border-2 border-pixel-purple p-6 mb-6">
+        {/* Contenido del Tema Activo - Secciones Expandibles */}
+        <div className="theory-item bg-pixel-dark border-2 border-pixel-purple p-4 md:p-6 mb-6">
           <h3 className="text-lg md:text-xl text-pixel-purple mb-4 flex items-center gap-2">
             <Lightbulb size={24} />
-            {teoria.temas[activeTema].titulo}
+            {temaActual.titulo}
           </h3>
-          <p className="text-gray-300 text-sm md:text-base mb-4 leading-relaxed whitespace-pre-line">
-            {teoria.temas[activeTema].contenido}
-          </p>
-          <div className="bg-pixel-gray p-4 border-2 border-pixel-blue">
-            <p className="text-pixel-green text-xs font-mono whitespace-pre-line">
-              {teoria.temas[activeTema].ejemplo}
-            </p>
+
+          {/* Secciones expandibles */}
+          <div className="space-y-2">
+            {secciones.map((seccion) => (
+              <div key={seccion.key} className="border border-pixel-blue rounded">
+                <button
+                  onClick={() => setExpandedSection(expandedSection === seccion.key ? null : seccion.key)}
+                  className="w-full p-3 flex items-center justify-between bg-pixel-gray hover:bg-pixel-gray/70 transition-colors"
+                >
+                  <span className="text-pixel-green text-sm md:text-base font-bold">
+                    {seccion.icono} {seccion.titulo}
+                  </span>
+                  <ChevronRight
+                    size={20}
+                    className={`text-pixel-blue transition-transform ${
+                      expandedSection === seccion.key ? 'rotate-90' : ''
+                    }`}
+                  />
+                </button>
+                
+                {expandedSection === seccion.key && (
+                  <div className="p-4 bg-pixel-dark border-t border-pixel-blue">
+                    <p className="text-gray-300 text-sm md:text-base whitespace-pre-line leading-relaxed">
+                      {temaActual[seccion.key]}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
