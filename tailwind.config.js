@@ -11,7 +11,7 @@ export default {
         'mono': ['"Courier New"', 'monospace'],
       },
       colors: {
-        'pixel-green': '#00ff88',
+        'pixel-green': '#008042',
         'pixel-dark': '#0a0a0a',
         'pixel-gray': '#1a1a2e',
         'pixel-blue': '#00d4ff',
