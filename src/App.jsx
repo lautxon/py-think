@@ -265,18 +265,40 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
           </button>
         </div>
 
-        {/* Progress Bar */}
-        <div className="mb-6 bg-pixel-gray p-4 border-2 border-pixel-green">
-          <div className="flex justify-between text-sm text-pixel-blue mb-2">
-            <span>Pregunta {numeroPregunta} de {totalPreguntas}</span>
-            <span>{Math.round((numeroPregunta / totalPreguntas) * 100)}%</span>
+        {/* Progress Bar 8-bit */}
+        <div className="mb-6 bg-pixel-gray p-4 border-4 border-pixel-green">
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm text-pixel-blue font-bold">
+              PROGRESO: {numeroPregunta}/{totalPreguntas}
+            </span>
+            <span className="text-sm text-pixel-green font-bold">
+              {Math.round((numeroPregunta / totalPreguntas) * 100)}%
+            </span>
           </div>
-          <div className="h-4 bg-pixel-dark border-2 border-pixel-gray">
-            <div
-              className={`h-full bg-${nivelColor} transition-all duration-500`}
-              style={{ width: `${(numeroPregunta / totalPreguntas) * 100}%` }}
-            ></div>
+          
+          {/* Barra de progreso estilo 8-bit con bloques */}
+          <div className="flex gap-1 justify-center">
+            {Array.from({ length: totalPreguntas }, (_, i) => (
+              <div
+                key={i}
+                className={`w-4 h-6 md:w-6 md:h-8 border-2 transition-all duration-300 ${
+                  i < numeroPregunta
+                    ? `bg-${nivelColor} border-white`
+                    : 'bg-pixel-dark border-pixel-blue'
+                }`}
+                style={{
+                  boxShadow: i < numeroPregunta ? `0 0 8px var(--pixel-green)` : 'none'
+                }}
+              />
+            ))}
           </div>
+          
+          {/* Texto descriptivo */}
+          <p className="text-center text-xs text-pixel-blue mt-3">
+            {numeroPregunta === totalPreguntas
+              ? '¡Última pregunta del nivel!'
+              : `Faltan ${totalPreguntas - numeroPregunta} preguntas`}
+          </p>
         </div>
 
         {/* Question Card */}
