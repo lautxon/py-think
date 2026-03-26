@@ -166,6 +166,13 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
   const [submitted, setSubmitted] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
+  // Resetear estado cuando cambia la pregunta
+  useEffect(() => {
+    setInputValue('');
+    setSubmitted(false);
+    setFeedback(null);
+  }, [pregunta]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.question-card', 
