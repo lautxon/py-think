@@ -223,7 +223,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 
     setTimeout(() => {
       onAnswer(isCorrect);
-    }, 4000);
+    }, 7000);
   };
 
   return (
