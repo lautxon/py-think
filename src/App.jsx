@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle } from 'lucide-react';
+import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings } from 'lucide-react';
 import { gsap } from 'gsap';
 import { gameData } from './data/gameData';
 
 // Pantalla de Inicio
-function HomeScreen({ onStart }) {
+function HomeScreen({ onStart, onOpenSettings }) {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const characterRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(titleRef.current.children, 
+      gsap.fromTo(titleRef.current.children,
         { y: -50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out' }
       );
@@ -24,7 +24,7 @@ function HomeScreen({ onStart }) {
         ease: 'sine.inOut'
       });
 
-      gsap.fromTo('.start-btn', 
+      gsap.fromTo('.start-btn',
         { scale: 0.8, opacity: 0 },
         { scale: 1, opacity: 1, duration: 0.6, delay: 1, ease: 'back.out(1.7)' }
       );
@@ -40,6 +40,15 @@ function HomeScreen({ onStart }) {
       <div className="absolute top-20 left-10 w-2 h-2 bg-pixel-green animate-pulse pointer-events-none"></div>
       <div className="absolute bottom-20 right-10 w-3 h-3 bg-pixel-blue animate-pulse delay-700 pointer-events-none"></div>
       <div className="absolute top-40 right-20 w-2 h-2 bg-pixel-purple animate-pulse delay-500 pointer-events-none"></div>
+
+      {/* Settings Button */}
+      <button
+        onClick={onOpenSettings}
+        className="absolute top-4 right-4 p-3 bg-pixel-dark border-2 border-pixel-blue text-pixel-blue hover:border-pixel-green hover:text-pixel-green transition-colors z-50"
+        title="Configuración"
+      >
+        <Settings size={24} />
+      </button>
 
       {/* Main Card */}
       <div className="relative z-50 max-w-4xl w-full bg-pixel-gray/90 border-4 border-pixel-green p-8 md:p-12 rounded-lg shadow-2xl">
@@ -551,6 +560,75 @@ function NotesPanel({ conceptosClave, onClose, onSelectConcept }) {
   );
 }
 
+// Panel de Configuración (Contraste)
+function SettingsPanel({ onClose, contrast, setContrast }) {
+  const options = [
+    { value: 'normal', label: 'Normal', color: '#00ff88', description: 'Verde neón original (estilo 8-bit)' },
+    { value: 'soft', label: 'Suave', color: '#008042', description: 'Verde más oscuro (recomendado)' },
+    { value: 'high', label: 'Alto', color: '#00cc6a', description: 'Máximo contraste (accesibilidad)' }
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="max-w-md w-full bg-pixel-dark border-4 border-pixel-green p-6" onClick={e => e.stopPropagation()}>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl text-pixel-green flex items-center gap-2">
+            <Settings size={28} />
+            Configuración
+          </h2>
+          <button onClick={onClose} className="text-pixel-blue hover:text-pixel-green">
+            <X size={28} />
+          </button>
+        </div>
+        
+        <div className="mb-6">
+          <h3 className="text-pixel-blue text-sm mb-4">Contraste del Verde</h3>
+          
+          <div className="space-y-3">
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setContrast(option.value)}
+                className={`w-full p-4 border-2 text-left transition-all ${
+                  contrast === option.value
+                    ? 'border-pixel-green bg-pixel-green/10'
+                    : 'border-pixel-blue bg-pixel-gray hover:border-pixel-green'
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div
+                    className="w-6 h-6 rounded border-2 border-white"
+                    style={{ backgroundColor: option.color }}
+                  ></div>
+                  <span className={`font-bold ${
+                    contrast === option.value ? 'text-pixel-green' : 'text-pixel-blue'
+                  }`}>
+                    {option.label}
+                  </span>
+                </div>
+                <p className="text-gray-400 text-xs ml-9">{option.description}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        <div className="bg-pixel-gray p-4 border-2 border-pixel-blue mb-6">
+          <p className="text-pixel-blue text-xs">
+            💡 La configuración se guarda automáticamente y persiste entre sesiones.
+          </p>
+        </div>
+        
+        <button
+          onClick={onClose}
+          className="pixel-btn w-full bg-pixel-green text-pixel-dark px-6 py-3 font-bold hover:bg-pixel-blue transition-colors"
+        >
+          CERRAR
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // Pantalla Final
 function FinalScreen({ onRestart }) {
   const containerRef = useRef(null);
@@ -666,6 +744,18 @@ function App() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState({ correct: 0, total: 0 });
+  const [showSettings, setShowSettings] = useState(false);
+  const [contrast, setContrast] = useState(() => {
+    // Load from localStorage or default to 'soft'
+    const saved = localStorage.getItem('pcp-contrast');
+    return saved || 'soft';
+  });
+
+  // Apply contrast setting to document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-contrast', contrast);
+    localStorage.setItem('pcp-contrast', contrast);
+  }, [contrast]);
 
   const startGame = () => {
     setGameState('theory');
@@ -711,7 +801,10 @@ function App() {
   return (
     <div className="min-h-screen bg-pixel-dark text-pixel-green font-pixel">
       {gameState === 'home' && (
-        <HomeScreen onStart={startGame} />
+        <HomeScreen
+          onStart={startGame}
+          onOpenSettings={() => setShowSettings(true)}
+        />
       )}
 
       {gameState === 'theory' && nivelActual && (
@@ -734,6 +827,15 @@ function App() {
 
       {gameState === 'final' && (
         <FinalScreen onRestart={restartGame} />
+      )}
+
+      {/* Settings Panel */}
+      {showSettings && (
+        <SettingsPanel
+          onClose={() => setShowSettings(false)}
+          contrast={contrast}
+          setContrast={setContrast}
+        />
       )}
     </div>
   );

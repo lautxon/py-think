@@ -12,6 +12,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Contrast Themes */
+:root,
+[data-contrast="normal"] {
+  --pixel-green: #00ff88;
+}
+
+[data-contrast="soft"] {
+  --pixel-green: #008042;
+}
+
+[data-contrast="high"] {
+  --pixel-green: #00cc6a;
+}
+
 .font-pixel {
   font-family: 'Press Start 2P', cursive;
 }
