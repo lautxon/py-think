@@ -2,6 +2,18 @@
 
 **Aprende a Pensar como Programador** - Un juego educativo 2D estilo 8-bit que enseña Python.
 
+## 🌟 Nueva Funcionalidad: Introducción a Python
+
+Antes de comenzar el juego, ahora encontrarás una página educativa que explica:
+
+- **¿Qué es Python?**: Historia y características del lenguaje
+- **Tipo de lenguaje**: Formal, de programación, de alto nivel, orientado a objetos
+- **¿Por qué y para qué se usa?**: Casos de uso en la industria
+- **¿Cómo se usa?**: Sintaxis básica y ejemplos
+- **¿Quiénes lo usan?**: NASA, Spotify, Netflix, Google, Instagram, Amazon, Tesla, Meta, y más
+- **Python e IA**: Su importancia en Inteligencia Artificial y Machine Learning
+- **Importancia para el futuro**: Demanda laboral y aplicaciones
+
 ## Stack Tecnológico
 
 - **React 19** - Framework UI
@@ -80,11 +92,12 @@ pcp/
 ## Cómo Jugar
 
 1. **Inicio**: Haz clic en "INICIAR JUEGO"
-2. **Niveles**: Lee la información industrial de cada nivel
-3. **Preguntas**: Escribe 1, 2 o 3 en la terminal virtual
-4. **Feedback**: Recibe explicaciones educativas
-5. **Progreso**: Avanza completando los 3 niveles
-6. **Resumen**: Aprende cómo piensa un programador
+2. **Introducción a Python**: Lee la información sobre Python (qué es, tipo de lenguaje, usos, empresas que lo usan, IA)
+3. **Niveles**: Lee la información industrial de cada nivel
+4. **Preguntas**: Escribe 1, 2 o 3 en la terminal virtual
+5. **Feedback**: Recibe explicaciones educativas
+6. **Progreso**: Avanza completando los 3 niveles
+7. **Resumen**: Aprende cómo piensa un programador
 
 ## Filosofía de Diseño
 

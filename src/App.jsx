@@ -1,7 +1,82 @@
 import { useState, useEffect, useRef } from 'react';
-import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings } from 'lucide-react';
+import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings, Rocket } from 'lucide-react';
 import { gsap } from 'gsap';
 import { gameData } from './data/gameData';
+
+// Pantalla de Introducción a Python
+function PythonIntroScreen({ onStart }) {
+  const containerRef = useRef(null);
+  const intro = gameData.pythonIntro;
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.intro-card',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+      );
+
+      gsap.fromTo('.intro-section',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.3 }
+      );
+
+      gsap.fromTo('.start-game-btn',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.8, ease: 'back.out(1.7)' }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="min-h-screen p-4 md:p-8 overflow-y-auto">
+      <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
+
+      <div className="intro-card max-w-5xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-8 bg-pixel-gray border-4 border-pixel-green p-6">
+          <Rocket className="text-pixel-green mx-auto mb-4" size={48} />
+          <h2 className="text-xl md:text-2xl text-pixel-green mb-2">{intro.titulo}</h2>
+          <p className="text-pixel-blue text-sm md:text-base">{intro.introduccion}</p>
+        </div>
+
+        {/* Sections Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {intro.secciones.map((seccion, idx) => (
+            <div
+              key={idx}
+              className="intro-section bg-pixel-dark border-2 border-pixel-blue p-4 hover:border-pixel-green transition-colors"
+            >
+              <div className="text-3xl mb-2">{seccion.icono}</div>
+              <h3 className="text-pixel-green font-bold text-sm md:text-base mb-2">{seccion.titulo}</h3>
+              <div className="text-gray-300 text-xs md:text-sm whitespace-pre-line leading-relaxed max-h-48 overflow-y-auto custom-scrollbar">
+                {seccion.contenido.split('\n').map((line, i) => (
+                  <p key={i} className="mb-1">{line}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Consejo */}
+        <div className="intro-section bg-pixel-green/10 border-2 border-pixel-yellow p-4 mb-6">
+          <p className="text-pixel-yellow text-sm md:text-base">{intro.consejo}</p>
+        </div>
+
+        {/* Start Button */}
+        <button
+          onClick={onStart}
+          className="start-game-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg md:text-xl font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
+        >
+          <Terminal size={24} />
+          ¡ENTENDIDO! COMENZAR AVENTURA
+          <ChevronRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 // Pantalla de Inicio
 function HomeScreen({ onStart, onOpenSettings }) {
@@ -850,7 +925,7 @@ function FinalScreen({ onRestart }) {
 
 // Componente Principal App
 function App() {
-  const [gameState, setGameState] = useState('home'); // home, theory, question, final
+  const [gameState, setGameState] = useState('home'); // home, intro, theory, question, final
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState({ correct: 0, total: 0 });
@@ -869,6 +944,10 @@ function App() {
   }, [contrast]);
 
   const startGame = () => {
+    setGameState('intro');
+  };
+
+  const startIntro = () => {
     setGameState('theory');
   };
 
@@ -940,6 +1019,12 @@ function App() {
         <HomeScreen
           onStart={startGame}
           onOpenSettings={() => setShowSettings(true)}
+        />
+      )}
+
+      {gameState === 'intro' && (
+        <PythonIntroScreen
+          onStart={startIntro}
         />
       )}
 

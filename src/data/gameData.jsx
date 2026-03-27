@@ -1,4 +1,169 @@
 export const gameData = {
+  pythonIntro: {
+    titulo: '¿Qué es Python?',
+    introduccion: 'Antes de comenzar tu aventura, conozcamos el lenguaje que vas a aprender:',
+    secciones: [
+      {
+        icono: '🐍',
+        titulo: '¿Qué es Python?',
+        contenido: `Python es un lenguaje de programación creado por Guido van Rossum a finales de 1989. Su nombre viene del grupo de comedia británico "Monty Python", no de la serpiente.
+
+Es como aprender un nuevo idioma, pero en lugar de comunicarte con personas, te comunicás con la computadora. Python es conocido por su sintaxis clara y legible, casi como leer inglés.`
+      },
+      {
+        icono: '📐',
+        titulo: 'Tipo de Lenguaje',
+        contenido: `Python es un lenguaje:
+
+✓ **Formal**: Tiene reglas gramaticales estrictas (sintaxis) que deben seguirse exactamente.
+
+✓ **De programación**: Permite escribir instrucciones que la computadora ejecuta.
+
+✓ **De alto nivel**: Está más cerca del lenguaje humano que del código máquina. No necesitás gestionar memoria manualmente.
+
+✓ **Orientado a objetos**: Todo en Python es un "objeto" con propiedades y comportamientos.
+
+✓ **Interpretado**: El código se ejecuta línea por línea, sin necesidad de compilar primero.
+
+✓ **Dinámico**: Las variables no tienen tipo fijo - Python lo detecta automáticamente.`
+      },
+      {
+        icono: '🚀',
+        titulo: '¿Por qué se usa Python?',
+        contenido: `Python es uno de los lenguajes más populares del mundo porque:
+
+✓ **Fácil de aprender**: Su sintaxis es clara y requiere menos código que otros lenguajes.
+
+✓ **Versátil**: Sirve para web, datos, IA, automatización, juegos, y más.
+
+✓ **Comunidad enorme**: Millones de desarrolladores crean librerías gratuitas para todo.
+
+✓ **Productividad**: Podés construir prototipos rápidamente y probar ideas al instante.
+
+✓ **Legible**: El código es fácil de entender, incluso meses después de escribirlo.`
+      },
+      {
+        icono: '💼',
+        titulo: '¿Para qué se usa Python?',
+        contenido: `Python se usa en áreas diversas:
+
+🌐 **Desarrollo Web**: Django, Flask (Instagram, Pinterest)
+
+📊 **Ciencia de Datos**: Análisis, visualización, estadísticas
+
+🤖 **Inteligencia Artificial**: Machine Learning, Deep Learning, ChatGPT
+
+🔬 **Investigación Científica**: Física, biología, astronomía
+
+💰 **Finanzas**: Trading algorítmico, análisis de riesgos
+
+🎮 **Juegos**: Prototipado, herramientas de desarrollo
+
+🤖 **Automatización**: Scripts que hacen tareas repetitivas
+
+📱 **Aplicaciones Desktop**: Interfaces gráficas, herramientas`
+      },
+      {
+        icono: '👨‍💻',
+        titulo: '¿Cómo se usa Python?',
+        contenido: `Python se usa escribiendo código en archivos con extensión **.py**:
+
+\`\`\`python
+# Mi primer programa
+print("¡Hola, mundo!")
+
+# Variables
+nombre = "Juan"
+edad = 25
+
+# Condicionales
+if edad >= 18:
+    print("Mayor de edad")
+else:
+    print("Menor de edad")
+
+# Bucles
+for i in range(5):
+    print(f"Número: {i}")
+\`\`\`
+
+El código se ejecuta con: **python archivo.py**
+
+También podés usar Python en modo interactivo, Jupyter Notebooks, o entornos como VS Code.`
+      },
+      {
+        icono: '🏢',
+        titulo: '¿Quiénes usan Python?',
+        contenido: `Las empresas más importantes del mundo usan Python:
+
+🚀 **NASA**: Análisis de datos de telescopios, simulaciones de vuelo, procesamiento de imágenes satelitales.
+
+🎵 **Spotify**: Sistema de recomendaciones de música, análisis de audio, backend de servicios.
+
+🎬 **Netflix**: Algoritmos de recomendación, análisis de viewing, infraestructura de servidores.
+
+🔍 **Google**: Búsqueda web, YouTube (está construido con Python), TensorFlow (IA).
+
+📸 **Instagram**: Backend que maneja miles de millones de posts diarios.
+
+🛒 **Amazon**: Recomendaciones de productos, logística, AWS (Amazon Web Services).
+
+🚗 **Tesla**: Sistemas de auto-piloto, análisis de datos de vehículos.
+
+💬 **Meta (Facebook)**: Infraestructura, IA, análisis de datos.
+
+🏦 **JPMorgan Chase**: Trading algorítmico, detección de fraudes.`
+      },
+      {
+        icono: '🤖',
+        titulo: 'Python e Inteligencia Artificial',
+        contenido: `Python es el lenguaje #1 para IA y Machine Learning:
+
+🧠 **Librerías poderosas**: TensorFlow, PyTorch, scikit-learn, Keras.
+
+📚 **Recursos educativos**: La mayoría de cursos de IA usan Python.
+
+🔬 **Investigación**: Los papers de IA publican código en Python.
+
+💼 **Industria**: ChatGPT, Midjourney, Stable Diffusion - todos usan Python.
+
+**¿Por qué Python para IA?**
+- Sintaxis simple para algoritmos complejos
+- Ecosistema maduro de librerías de IA
+- Integración con C++ para performance
+- Comunidad activa en investigación
+
+La IA está transformando el mundo, y Python es la herramienta principal para crearla.`
+      },
+      {
+        icono: '🔮',
+        titulo: 'Importancia de Python',
+        contenido: `Python es crucial para el desarrollo actual y futuro:
+
+📈 **Crecimiento**: Es el lenguaje más enseñado en universidades.
+
+🌍 **Demanda laboral**: Millones de empleos requieren Python.
+
+🚀 **Futuro**: IA, automatización, y ciencia de datos crecerán con Python.
+
+🎓 **Educación**: Es el primer lenguaje para millones de estudiantes.
+
+🔓 **Open Source**: Todo el ecosistema es gratuito y accesible.
+
+**Aprender Python es una inversión en tu futuro.**
+
+No es solo un lenguaje de programación - es una habilidad que te permitirá:
+- Automatizar tareas aburridas
+- Analizar datos y tomar mejores decisiones
+- Crear productos digitales
+- Entender el mundo tecnológico
+- Trabajar en industrias del futuro
+
+¡Estás a punto de comenzar un viaje increíble! 🚀`
+      }
+    ],
+    consejo: '💡 Consejo: No necesitás memorizar todo ahora. La programación se aprende practicando. ¡Vamos a jugar!'
+  },
   niveles: [
     {
       id: 'fundamentos',
