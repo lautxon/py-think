@@ -753,5 +753,270 @@ Este pensamiento no es innato - se desarrolla con práctica, exactamente como hi
 Tu viaje apenas comienza. Cada línea de código que escribas fortalecerá estas conexiones neuronales.
 
 ¡El mundo necesita más programadores que piensen críticamente!`
+  },
+  carreraProfesional: {
+    titulo: 'Tu Futuro con Python',
+    introduccion: 'Completaste el juego. Ahora comienza tu verdadera aventura...',
+    secciones: [
+      {
+        icono: '🤝',
+        titulo: 'El Ecosistema Python',
+        subtitulo: 'Librerías y Frameworks Esenciales',
+        contenido: `Python no está solo - tiene un ecosistema masivo de librerías que extienden sus capacidades:
+
+🌐 **Desarrollo Web:**
+   • Django - Framework completo para aplicaciones robustas
+   • Flask - Microframework ligero y flexible
+   • FastAPI - Moderno y rápido para APIs
+
+📊 **Ciencia de Datos:**
+   • Pandas - Análisis y manipulación de datos
+   • NumPy - Cálculo numérico y arrays
+   • Matplotlib/Seaborn - Visualización de datos
+
+🤖 **Inteligencia Artificial:**
+   • TensorFlow - Deep Learning de Google
+   • PyTorch - Deep Learning de Meta
+   • scikit-learn - Machine Learning clásico
+
+🔧 **Automatización y DevOps:**
+   • Ansible - Automatización de infraestructura
+   • Requests - HTTP para automatización web
+   • BeautifulSoup - Web scraping`
+      },
+      {
+        icono: '🛠️',
+        titulo: 'Stack Tecnológico',
+        subtitulo: 'Herramientas que necesitarás',
+        contenido: `Para trabajar profesionalmente con Python, este es el stack actual:
+
+💻 **Desarrollo:**
+   • VS Code - Editor más popular (gratis)
+   • PyCharm - IDE profesional de JetBrains
+   • Jupyter Notebooks - Para data science
+
+📦 **Control de Versiones:**
+   • Git - Control de versiones
+   • GitHub/GitLab - Repositorios y colaboración
+
+🐳 **Contenedores y Deploy:**
+   • Docker - Contenerización de aplicaciones
+   • Kubernetes - Orquestación de contenedores
+   • AWS/Azure/GCP - Cloud computing
+
+🗄️ **Bases de Datos:**
+   • PostgreSQL - Base de datos relacional
+   • MongoDB - Base de datos NoSQL
+   • Redis - Caché y mensajería
+
+🧪 **Testing:**
+   • pytest - Testing framework
+   • unittest - Testing estándar
+   • coverage - Medir cobertura de tests`
+      },
+      {
+        icono: '🏢',
+        titulo: 'Contextos de Trabajo',
+        subtitulo: 'Dónde y cómo trabajar',
+        contenido: `Python te abre puertas en diversos contextos laborales:
+
+🏢 **Empresas Established:**
+   • Grandes tech (Google, Meta, Amazon)
+   • Bancos y fintech
+   • Consultoras tecnológicas
+   • Empresas de telecomunicaciones
+
+🚀 **Startups:**
+   • Ritmo rápido, aprendizaje intenso
+   • Mayor responsabilidad temprana
+   • Posibilidad de equity (acciones)
+
+💻 **Trabajo Remoto:**
+   • 100% remoto muy común en tech
+   • Trabajar para empresas del exterior
+   • Flexibilidad horaria
+
+🎓 **Investigación:**
+   • Universidades y laboratorios
+   • Publicación de papers
+   • Colaboración internacional
+
+👨‍💼 **Freelance:**
+   • Proyectos por contrato
+   • Diversidad de industrias
+   • Control de tu agenda`
+      },
+      {
+        icono: '👥',
+        titulo: 'Roles y Perfiles',
+        subtitulo: 'Caminos profesionales disponibles',
+        contenido: `Con Python podés especializarte en múltiples roles:
+
+🔙 **Backend Developer:**
+   • APIs y servicios web
+   • Bases de datos
+   • Salario: $60k - $150k USD
+
+📊 **Data Scientist:**
+   • Análisis de datos
+   • Modelos predictivos
+   • Salario: $80k - $180k USD
+
+🤖 **ML/AI Engineer:**
+   • Modelos de machine learning
+   • Deep Learning
+   • Salario: $100k - $250k+ USD
+
+⚙️ **DevOps Engineer:**
+   • Automatización de infraestructura
+   • CI/CD pipelines
+   • Salario: $80k - $160k USD
+
+🔬 **Research Scientist:**
+   • Investigación en IA
+   • Publicaciones académicas
+   • Salario: $70k - $200k USD
+
+📈 **Data Analyst:**
+   • Business intelligence
+   • Dashboards y reportes
+   • Salario: $50k - $120k USD`
+      },
+      {
+        icono: '📈',
+        titulo: 'La Industria Hoy',
+        subtitulo: 'Demanda y tendencias del mercado',
+        contenido: `El mercado laboral para Python está en crecimiento constante:
+
+📊 **Demanda Actual:**
+   • +2 millones de empleos que requieren Python (2025)
+   • Crecimiento anual del 22%
+   • Top 3 lenguajes más demandados
+
+🌍 **Mercado Global:**
+   • Estados Unidos: Mayor demanda
+   • Europa: Crecimiento en Berlín, Ámsterdam
+   • Latinoamérica: Hub emergente (Argentina, México, Brasil)
+   • Asia: Singapore, India en expansión
+
+💰 **Tendencias Salariales:**
+   • Junior (0-2 años): $40k - $70k USD
+   • Mid (2-5 años): $70k - $120k USD
+   • Senior (5+ años): $120k - $250k+ USD
+   • Staff/Principal: $200k - $500k+ USD
+
+🔥 **Habilidades Más Buscadas:**
+   1. Python + SQL
+   2. Python + Cloud (AWS/Azure)
+   3. Python + Machine Learning
+   4. Python + Django/FastAPI
+   5. Python + Docker/Kubernetes`
+      },
+      {
+        icono: '🎓',
+        titulo: 'Caminos de Aprendizaje',
+        subtitulo: 'Cómo seguir creciendo',
+        contenido: `Tu aprendizaje no termina aquí. Estas son las rutas:
+
+📚 **Cursos y Certificaciones:**
+   • Coursera - Especializaciones universitarias
+   • edX - Cursos de MIT, Harvard
+   • Udemy - Cursos prácticos económicos
+   • Pluralsight - Tech skills
+
+🎓 **Bootcamps Intensivos:**
+   • General Assembly (12 semanas)
+   • Le Wagon (9 semanas)
+   • Ironhack (9 semanas)
+   • Coderhouse (Latam)
+
+🏆 **Certificaciones Oficiales:**
+   • PCAP - Certified Associate Python Programmer
+   • PCPP - Certified Professional Python Programmer
+   • AWS Certified Developer
+   • TensorFlow Developer Certificate
+
+📖 **Recursos Gratuitos:**
+   • Python.org - Documentación oficial
+   • Real Python - Tutoriales
+   • freeCodeCamp - Cursos completos
+   • YouTube - Canales especializados`
+      },
+      {
+        icono: '💼',
+        titulo: 'Tu Primer Empleo',
+        subtitulo: 'Cómo conseguir trabajo',
+        contenido: `Pasos concretos para landing tu primer rol:
+
+📁 **1. Armá tu Portfolio:**
+   • 3-5 proyectos completos en GitHub
+   • Incluí variedad (web, datos, automation)
+   • Documentá bien cada proyecto
+   • Deploy de al menos 1 proyecto
+
+💾 **2. Optimizá tu GitHub:**
+   • README profesional en cada repo
+   • Código limpio y comentado
+   • Commits frecuentes
+   • Proyectos con tests
+
+📄 **3. Tu CV Tech:**
+   • Destacá proyectos, no solo educación
+   • Incluí tecnologías específicas
+   • Link a GitHub y LinkedIn
+   • Sin foto (estándar en tech)
+
+🔗 **4. LinkedIn:**
+   • Perfil completo en inglés
+   • Conectá con recruiters tech
+   • Publicá sobre tu aprendizaje
+   • Seguí empresas objetivo
+
+🎯 **5. Dónde aplicar:**
+   • LinkedIn Jobs
+   • Indeed
+   • Stack Overflow Jobs
+   • RemoteOK (remoto)
+   • Empresas directamente`
+      },
+      {
+        icono: '🚀',
+        titulo: 'Próximos Pasos',
+        subtitulo: 'Tu hoja de ruta sugerida',
+        contenido: `Basado en donde estás ahora, esta es la ruta recomendada:
+
+**Mes 1-2: Fundamentos Sólidos**
+   ✓ Completar este juego (¡lo lograste!)
+   ✓ Practicar en HackerRank/LeetCode fácil
+   ✓ Crear 2-3 scripts personales
+
+**Mes 3-4: Primer Proyecto**
+   ✓ Elegir un framework (Django o Flask)
+   ✓ Construir una aplicación completa
+   ✓ Deploy en Heroku/Railway
+
+**Mes 5-6: Especialización**
+   ✓ Elegir un camino (web, datos, IA)
+   ✓ Curso especializado
+   ✓ Proyecto más complejo
+
+**Mes 7-9: Portfolio**
+   ✓ 3 proyectos en GitHub
+   ✓ Contribuir a open source
+   ✓ Networking en LinkedIn
+
+**Mes 10-12: Primer Empleo**
+   ✓ Preparar CV y portfolio
+   ✓ Aplicar a posiciones junior
+   ✓ Practicar entrevistas técnicas
+
+---
+
+**Recordá:** Cada programador senior fue junior alguna vez. La consistencia le gana a la intensidad.
+
+¡Tu viaje comienza ahora! 🎮→💼`
+      }
+    ],
+    consejo: '💡 Consejo: No necesitás saber todo antes de empezar. Aprendé haciendo, fallá, iterá. El mercado laboral valora más proyectos reales que certificaciones.'
   }
 };

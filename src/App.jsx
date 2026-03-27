@@ -815,27 +815,27 @@ function SettingsPanel({ onClose, contrast, setContrast }) {
 }
 
 // Pantalla Final
-function FinalScreen({ onRestart }) {
+function FinalScreen({ onRestart, onViewCareer }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.final-card', 
+      gsap.fromTo('.final-card',
         { scale: 0.8, opacity: 0 },
         { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.7)' }
       );
 
-      gsap.fromTo('.final-title', 
+      gsap.fromTo('.final-title',
         { y: -30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6 }
       );
 
-      gsap.fromTo('.summary-item', 
+      gsap.fromTo('.summary-item',
         { x: -50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.6, stagger: 0.15, delay: 0.3 }
       );
 
-      gsap.fromTo('.restart-btn', 
+      gsap.fromTo('.restart-btn',
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, delay: 0.8, ease: 'back.out(1.7)' }
       );
@@ -863,7 +863,7 @@ function FinalScreen({ onRestart }) {
         {/* Summary Items */}
         <div className="grid gap-4 md:gap-6 mb-8">
           {finalSummary.items.map((item, idx) => (
-            <div 
+            <div
               key={idx}
               className="summary-item bg-pixel-gray border-2 border-pixel-green p-4 md:p-6"
             >
@@ -904,14 +904,24 @@ function FinalScreen({ onRestart }) {
           </div>
         </div>
 
-        {/* Restart Button */}
-        <button
-          onClick={onRestart}
-          className="restart-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-8"
-        >
-          <RotateCcw size={24} />
-          JUGAR DE NUEVO
-        </button>
+        {/* Action Buttons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <button
+            onClick={onViewCareer}
+            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
+          >
+            <Rocket size={24} />
+            TU FUTURO CON PYTHON
+          </button>
+
+          <button
+            onClick={onRestart}
+            className="restart-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
+          >
+            <RotateCcw size={24} />
+            JUGAR DE NUEVO
+          </button>
+        </div>
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500 pb-8">
@@ -923,9 +933,94 @@ function FinalScreen({ onRestart }) {
   );
 }
 
+// Pantalla de Futuro Profesional con Python
+function FutureWithPythonScreen({ onRestart, onBack }) {
+  const containerRef = useRef(null);
+  const carrera = gameData.carreraProfesional;
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.career-card',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+      );
+
+      gsap.fromTo('.career-section',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.3 }
+      );
+
+      gsap.fromTo('.career-actions',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.8, ease: 'back.out(1.7)' }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="min-h-screen p-4 md:p-8 overflow-y-auto">
+      <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
+
+      <div className="career-card max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-8 bg-pixel-gray border-4 border-pixel-green p-6">
+          <Rocket className="text-pixel-green mx-auto mb-4" size={48} />
+          <h2 className="text-xl md:text-2xl text-pixel-green mb-2">{carrera.titulo}</h2>
+          <p className="text-pixel-blue text-sm md:text-base">{carrera.introduccion}</p>
+        </div>
+
+        {/* Sections Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {carrera.secciones.map((seccion, idx) => (
+            <div
+              key={idx}
+              className="career-section bg-pixel-dark border-2 border-pixel-blue p-4 hover:border-pixel-green transition-colors"
+            >
+              <div className="text-3xl mb-2">{seccion.icono}</div>
+              <h3 className="text-pixel-green font-bold text-sm md:text-base mb-1">{seccion.titulo}</h3>
+              <p className="text-pixel-blue text-xs mb-3">{seccion.subtitulo}</p>
+              <div className="text-gray-300 text-xs md:text-sm whitespace-pre-line leading-relaxed max-h-80 overflow-y-auto custom-scrollbar">
+                {seccion.contenido.split('\n').map((line, i) => (
+                  <p key={i} className="mb-1">{line}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Consejo */}
+        <div className="career-section bg-pixel-green/10 border-2 border-pixel-yellow p-4 mb-6">
+          <p className="text-pixel-yellow text-sm md:text-base">{carrera.consejo}</p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="career-actions grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            onClick={onBack}
+            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
+          >
+            <ChevronRight size={24} />
+            VOLVER AL RESUMEN
+          </button>
+
+          <button
+            onClick={onRestart}
+            className="pixel-btn w-full bg-pixel-dark border-2 border-pixel-green text-pixel-green px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
+          >
+            <RotateCcw size={24} />
+            JUGAR DE NUEVO
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Componente Principal App
 function App() {
-  const [gameState, setGameState] = useState('home'); // home, intro, theory, question, final
+  const [gameState, setGameState] = useState('home'); // home, intro, theory, question, final, career
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState({ correct: 0, total: 0 });
@@ -955,6 +1050,14 @@ function App() {
     setCurrentQuestion(0);
     setGameState('question');
     setIsPaused(false);
+  };
+
+  const goToCareer = () => {
+    setGameState('career');
+  };
+
+  const backToFinal = () => {
+    setGameState('final');
   };
 
   const handlePause = () => {
@@ -1048,7 +1151,17 @@ function App() {
       )}
 
       {gameState === 'final' && (
-        <FinalScreen onRestart={restartGame} />
+        <FinalScreen
+          onRestart={restartGame}
+          onViewCareer={goToCareer}
+        />
+      )}
+
+      {gameState === 'career' && (
+        <FutureWithPythonScreen
+          onRestart={restartGame}
+          onBack={backToFinal}
+        />
       )}
 
       {/* Pause Screen */}
