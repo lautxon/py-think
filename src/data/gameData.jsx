@@ -1018,5 +1018,136 @@ Tu viaje apenas comienza. Cada línea de código que escribas fortalecerá estas
       }
     ],
     consejo: '💡 Consejo: No necesitás saber todo antes de empezar. Aprendé haciendo, fallá, iterá. El mercado laboral valora más proyectos reales que certificaciones.'
+  },
+  glosario: {
+    titulo: 'Glosario de Términos',
+    introduccion: 'Diccionario de términos esenciales de Python y programación:',
+    categorias: [
+      {
+        nombre: '🐍 Python y Conceptos Generales',
+        terminos: [
+          { termino: 'Python', definicion: 'Lenguaje de programación de alto nivel, interpretado y de sintaxis clara. Creado en 1991 por Guido van Rossum.' },
+          { termino: 'Lenguaje de programación', definicion: 'Sistema formal de comunicación con instrucciones para que una computadora ejecute tareas.' },
+          { termino: 'Código', definicion: 'Conjunto de instrucciones escritas en un lenguaje de programación que la computadora puede ejecutar.' },
+          { termino: 'Script', definicion: 'Programa pequeño o conjunto de instrucciones que se ejecuta automáticamente.' },
+          { termino: 'Sintaxis', definicion: 'Conjunto de reglas que definen cómo escribir código correcto en un lenguaje de programación.' },
+          { termino: 'Interpretado', definicion: 'Tipo de lenguaje que ejecuta el código línea por línea sin compilación previa (ej: Python, JavaScript).' },
+          { termino: 'Compilado', definicion: 'Tipo de lenguaje que convierte todo el código a lenguaje máquina antes de ejecutar (ej: C++, Java).' },
+          { termino: 'Variable', definicion: 'Espacio en memoria que almacena un valor. Tiene un nombre y un tipo de dato.' },
+          { termino: 'Tipo de dato', definicion: 'Clasificación de datos que determina qué operaciones se pueden realizar (int, float, string, boolean).' },
+          { termino: 'String', definicion: 'Secuencia de caracteres que representa texto. Se define con comillas: "Hola".' },
+          { termino: 'Integer (int)', definicion: 'Número entero sin decimales. Ej: 42, -10, 0.' },
+          { termino: 'Float', definicion: 'Número con decimales. Ej: 3.14, -0.5, 2.0.' },
+          { termino: 'Boolean (bool)', definicion: 'Tipo de dato que solo puede ser True (verdadero) o False (falso).' },
+          { termino: 'Lista', definicion: 'Colección ordenada y mutable de elementos. Se define con corchetes: [1, 2, 3].' },
+          { termino: 'Diccionario', definicion: 'Colección de pares clave-valor. Se define con llaves: {"nombre": "Juan"}.' },
+          { termino: 'Tupla', definicion: 'Colección ordenada e inmutable de elementos. Se define con paréntesis: (1, 2, 3).' },
+          { termino: 'Función', definicion: 'Bloque de código reutilizable que realiza una tarea específica. Se define con "def".' },
+          { termino: 'Parámetro', definicion: 'Variable que recibe una función para trabajar con datos de entrada.' },
+          { termino: 'Return', definicion: 'Palabra clave que devuelve un valor desde una función.' },
+          { termino: 'Condicional (if)', definicion: 'Estructura que ejecuta código solo si se cumple una condición.' },
+          { termino: 'Bucle/Loop', definicion: 'Estructura que repite un bloque de código múltiples veces (for, while).' },
+          { termino: 'Clase', definicion: 'Plantilla para crear objetos en programación orientada a objetos.' },
+          { termino: 'Objeto', definicion: 'Instancia de una clase que contiene datos y métodos.' },
+          { termino: 'Método', definicion: 'Función definida dentro de una clase que opera sobre objetos.' },
+          { termino: 'Import', definicion: 'Palabra clave para importar módulos o librerías en Python.' },
+          { termino: 'Módulo', definicion: 'Archivo Python que contiene funciones, clases y variables reutilizables.' },
+          { termino: 'Librería', definicion: 'Conjunto de módulos que proporcionan funcionalidad específica.' },
+          { termino: 'Exception', definicion: 'Error que ocurre durante la ejecución del programa y puede ser manejado.' },
+          { termino: 'Debug', definicion: 'Proceso de encontrar y corregir errores en el código.' },
+          { termino: 'Bug', definicion: 'Error o defecto en el código que causa comportamiento incorrecto.' }
+        ]
+      },
+      {
+        nombre: '🌐 Desarrollo Web',
+        terminos: [
+          { termino: 'Frontend', definicion: 'Parte del desarrollo que se encarga de lo que el usuario ve e interactúa (HTML, CSS, JavaScript).' },
+          { termino: 'Backend', definicion: 'Parte del desarrollo que maneja la lógica del servidor, bases de datos y APIs.' },
+          { termino: 'Full Stack', definicion: 'Desarrollador que trabaja tanto en frontend como en backend.' },
+          { termino: 'API', definicion: 'Interfaz que permite que diferentes aplicaciones se comuniquen entre sí.' },
+          { termino: 'REST', definicion: 'Estilo de arquitectura para diseñar APIs usando HTTP.' },
+          { termino: 'HTTP', definicion: 'Protocolo de transferencia de hipertexto. Base de comunicación web.' },
+          { termino: 'Servidor', definicion: 'Computadora o programa que proporciona servicios o recursos a otros programas.' },
+          { termino: 'Cliente', definicion: 'Programa o computadora que solicita servicios a un servidor.' },
+          { termino: 'Request', definicion: 'Petición que un cliente envía a un servidor.' },
+          { termino: 'Response', definicion: 'Respuesta que un servidor envía a un cliente.' },
+          { termino: 'Endpoint', definicion: 'URL específica de una API que realiza una operación determinada.' },
+          { termino: 'JSON', definicion: 'Formato ligero de intercambio de datos. Clave-valor como los diccionarios de Python.' },
+          { termino: 'Framework', definicion: 'Estructura que proporciona funcionalidad base para desarrollar aplicaciones más rápido.' },
+          { termino: 'Django', definicion: 'Framework web de Python de alto nivel. Sigue el patrón MVT. "Batteries included".' },
+          { termino: 'Flask', definicion: 'Microframework web de Python. Ligero y flexible, ideal para proyectos pequeños.' },
+          { termino: 'FastAPI', definicion: 'Framework moderno de Python para construir APIs rápidas. Soporta async nativamente.' },
+          { termino: 'ORM', definicion: 'Mapeo Objeto-Relacional. Permite trabajar con bases de datos usando objetos.' },
+          { termino: 'Template', definicion: 'Archivo que define la estructura HTML de una página web con placeholders dinámicos.' }
+        ]
+      },
+      {
+        nombre: '🗄️ Bases de Datos',
+        terminos: [
+          { termino: 'Base de datos', definicion: 'Colección organizada de datos almacenados electrónicamente.' },
+          { termino: 'SQL', definicion: 'Lenguaje de consulta estructurado para bases de datos relacionales.' },
+          { termino: 'NoSQL', definicion: 'Tipo de base de datos no relacional. Flexible y escalable (ej: MongoDB).' },
+          { termino: 'Tabla', definicion: 'Estructura de datos en bases de datos relacionales con filas y columnas.' },
+          { termino: 'Query', definicion: 'Consulta para obtener o manipular datos de una base de datos.' },
+          { termino: 'Primary Key', definicion: 'Campo único que identifica cada registro en una tabla.' },
+          { termino: 'Foreign Key', definicion: 'Campo que referencia a la primary key de otra tabla (relación).' },
+          { termino: 'Índice', definicion: 'Estructura que mejora la velocidad de búsqueda en una base de datos.' },
+          { termino: 'PostgreSQL', definicion: 'Sistema de base de datos relacional open source. Potente y estable.' },
+          { termino: 'MySQL', definicion: 'Sistema de base de datos relacional popular. Usado en muchas aplicaciones web.' },
+          { termino: 'MongoDB', definicion: 'Base de datos NoSQL orientada a documentos. Usa formato similar a JSON.' },
+          { termino: 'Redis', definicion: 'Base de datos en memoria. Usada como caché y mensajería.' }
+        ]
+      },
+      {
+        nombre: '🛠️ Herramientas y DevOps',
+        terminos: [
+          { termino: 'Git', definicion: 'Sistema de control de versiones distribuido. Permite rastrear cambios en el código.' },
+          { termino: 'GitHub', definicion: 'Plataforma para alojar repositorios Git. Colaboración y versionado.' },
+          { termino: 'Repositorio', definicion: 'Carpeta que contiene un proyecto Git con todo su historial.' },
+          { termino: 'Commit', definicion: 'Guardado de cambios en el historial de Git.' },
+          { termino: 'Branch', definicion: 'Rama de desarrollo paralela en Git.' },
+          { termino: 'Merge', definicion: 'Combinar cambios de una rama a otra en Git.' },
+          { termino: 'Pull Request', definicion: 'Solicitud para fusionar cambios de una rama a otra en GitHub.' },
+          { termino: 'Terminal', definicion: 'Interfaz de línea de comandos para interactuar con el sistema.' },
+          { termino: 'Consola', definicion: 'Interfaz para ejecutar comandos y ver resultados.' },
+          { termino: 'IDE', definicion: 'Entorno de Desarrollo Integrado. Editor de código con herramientas avanzadas.' },
+          { termino: 'VS Code', definicion: 'Editor de código de Microsoft. Gratuito, extensible y popular.' },
+          { termino: 'PyCharm', definicion: 'IDE profesional para Python de JetBrains. Versión Community gratuita.' },
+          { termino: 'Deploy', definicion: 'Proceso de publicar una aplicación en un servidor para producción.' },
+          { termino: 'Docker', definicion: 'Plataforma para crear y ejecutar contenedores. Aísla aplicaciones del entorno.' },
+          { termino: 'Container', definicion: 'Paquete que incluye una aplicación con todas sus dependencias.' },
+          { termino: 'Cloud', definicion: 'Computación en la nube. Servicios ejecutados en servidores remotos.' },
+          { termino: 'AWS', definicion: 'Amazon Web Services. Plataforma de cloud computing más grande.' },
+          { termino: 'CI/CD', definicion: 'Integración y Entrega Continua. Automatización del deploy de código.' }
+        ]
+      },
+      {
+        nombre: '🧪 Testing y Calidad',
+        terminos: [
+          { termino: 'Test', definicion: 'Código que verifica que otro código funcione correctamente.' },
+          { termino: 'Unit Test', definicion: 'Test que verifica una unidad individual de código (función, método).' },
+          { termino: 'pytest', definicion: 'Framework de testing para Python. Simple y poderoso.' },
+          { termino: 'unittest', definicion: 'Módulo estándar de Python para testing.' },
+          { termino: 'Logging', definicion: 'Registro de eventos y mensajes durante la ejecución del programa.' },
+          { termino: 'Coverage', definicion: 'Medida de cuánto código está cubierto por tests.' }
+        ]
+      },
+      { termino: '💰 Contexto Laboral', definicion: 'Términos relacionados con el trabajo en tecnología.' },
+      {
+        nombre: '💼 Contexto Laboral',
+        terminos: [
+          { termino: 'Junior', definicion: 'Desarrollador con 0-2 años de experiencia. Enfocado en aprender.' },
+          { termino: 'Mid-Level', definicion: 'Desarrollador con 2-5 años de experiencia. Más autonomía.' },
+          { termino: 'Senior', definicion: 'Desarrollador con 5+ años de experiencia. Lidera y mientorea.' },
+          { termino: 'Tech Lead', definicion: 'Líder técnico. Guía al equipo en decisiones de arquitectura.' },
+          { termino: 'Remote', definicion: 'Trabajo a distancia. Sin oficina física.' },
+          { termino: 'Stack', definicion: 'Conjunto de tecnologías usadas en un proyecto o empresa.' },
+          { termino: 'Portfolio', definicion: 'Colección de proyectos que demuestran tus habilidades.' },
+          { termino: 'Open Source', definicion: 'Código abierto. Proyectos públicos donde cualquiera puede contribuir.' },
+          { termino: 'Networking', definicion: 'Red de contactos profesionales. Importante para oportunidades.' },
+          { termino: 'Code Review', definicion: 'Revisión de código por otros desarrolladores antes de mergear.' }
+        ]
+      }
+    ]
   }
 };

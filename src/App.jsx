@@ -842,7 +842,7 @@ function SettingsPanel({ onClose, contrast, setContrast }) {
 }
 
 // Pantalla Final
-function FinalScreen({ onRestart, onViewCareer }) {
+function FinalScreen({ onRestart, onViewCareer, onGlossary }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -932,20 +932,28 @@ function FinalScreen({ onRestart, onViewCareer }) {
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <button
             onClick={onViewCareer}
-            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
+            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-4 py-4 text-xs md:text-sm font-bold flex items-center justify-center gap-2 hover:bg-pixel-green transition-colors"
           >
-            <Rocket size={24} />
-            TU FUTURO CON PYTHON
+            <Rocket size={20} />
+            <span className="hidden md:inline">TU FUTURO CON</span> PYTHON
+          </button>
+
+          <button
+            onClick={onGlossary}
+            className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-4 py-4 text-xs md:text-sm font-bold flex items-center justify-center gap-2 hover:bg-pixel-green transition-colors"
+          >
+            <BookOpen size={20} />
+            GLOSARIO
           </button>
 
           <button
             onClick={onRestart}
-            className="restart-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
+            className="restart-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-4 py-4 text-xs md:text-sm font-bold flex items-center justify-center gap-2 hover:bg-pixel-blue transition-colors"
           >
-            <RotateCcw size={24} />
+            <RotateCcw size={20} />
             JUGAR DE NUEVO
           </button>
         </div>
@@ -1045,9 +1053,142 @@ function FutureWithPythonScreen({ onRestart, onBack }) {
   );
 }
 
+// Pantalla de Glosario
+function GlossaryScreen({ onBack, onRestart }) {
+  const containerRef = useRef(null);
+  const glosario = gameData.glosario;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.glossary-card',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+      );
+
+      gsap.fromTo('.glossary-item',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.3 }
+      );
+
+      gsap.fromTo('.glossary-actions',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, delay: 0.8, ease: 'back.out(1.7)' }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Filtrar términos por búsqueda
+  const filteredCategories = glosario.categorias.map(cat => ({
+    ...cat,
+    terminos: cat.terminos.filter(t =>
+      t.termino.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      t.definicion.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })).filter(cat => cat.terminos.length > 0);
+
+  return (
+    <div ref={containerRef} className="min-h-screen p-4 md:p-8 overflow-y-auto">
+      <div className="scanlines absolute inset-0 opacity-20 pointer-events-none"></div>
+
+      <div className="glossary-card max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-6 bg-pixel-gray border-4 border-pixel-green p-6">
+          <BookOpen className="text-pixel-green mx-auto mb-4" size={48} />
+          <h2 className="text-xl md:text-2xl text-pixel-green mb-2">{glosario.titulo}</h2>
+          <p className="text-pixel-blue text-sm md:text-base mb-4">{glosario.introduccion}</p>
+          
+          {/* Search Input */}
+          <div className="max-w-md mx-auto">
+            <div className="relative">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar término..."
+                className="w-full bg-pixel-dark border-2 border-pixel-blue text-pixel-green px-4 py-3 pl-10 focus:outline-none focus:border-pixel-green"
+              />
+              <HelpCircle className="absolute left-3 top-1/2 -translate-y-1/2 text-pixel-blue" size={20} />
+            </div>
+          </div>
+        </div>
+
+        {/* Category Buttons */}
+        <div className="flex flex-wrap gap-2 mb-6 justify-center">
+          <button
+            onClick={() => setActiveCategory(null)}
+            className={`pixel-btn px-4 py-2 text-xs md:text-sm ${
+              activeCategory === null
+                ? 'bg-pixel-green text-pixel-dark'
+                : 'bg-pixel-dark border-2 border-pixel-blue text-pixel-blue hover:border-pixel-green'
+            }`}
+          >
+            Todos
+          </button>
+          {glosario.categorias.map((cat, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveCategory(activeCategory === idx ? null : idx)}
+              className={`pixel-btn px-4 py-2 text-xs md:text-sm ${
+                activeCategory === idx
+                  ? 'bg-pixel-green text-pixel-dark'
+                  : 'bg-pixel-dark border-2 border-pixel-blue text-pixel-blue hover:border-pixel-green'
+              }`}
+            >
+              {cat.nombre}
+            </button>
+          ))}
+        </div>
+
+        {/* Terms Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+          {(activeCategory !== null ? [filteredCategories[activeCategory]] : filteredCategories).map((cat, catIdx) => (
+            cat && cat.terminos.map((item, idx) => (
+              <div
+                key={`${catIdx}-${idx}`}
+                className="glossary-item bg-pixel-dark border-2 border-pixel-blue p-4 hover:border-pixel-green transition-colors"
+              >
+                <h3 className="text-pixel-green font-bold text-sm mb-2">{item.termino}</h3>
+                <p className="text-gray-300 text-xs leading-relaxed">{item.definicion}</p>
+              </div>
+            ))
+          ))}
+        </div>
+
+        {/* Results Count */}
+        <div className="text-center text-pixel-blue text-xs mb-6">
+          {filteredCategories.reduce((acc, cat) => acc + cat.terminos.length, 0)} términos encontrados
+        </div>
+
+        {/* Action Buttons */}
+        <div className="glossary-actions grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            onClick={onBack}
+            className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
+          >
+            <ChevronRight size={24} />
+            VOLVER AL RESUMEN
+          </button>
+
+          <button
+            onClick={onRestart}
+            className="pixel-btn w-full bg-pixel-dark border-2 border-pixel-green text-pixel-green px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
+          >
+            <RotateCcw size={24} />
+            JUGAR DE NUEVO
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Componente Principal App
 function App() {
-  const [gameState, setGameState] = useState('home'); // home, intro, theory, question, final, career
+  const [gameState, setGameState] = useState('home'); // home, intro, theory, question, final, career, glossary
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState({ correct: 0, total: 0 });
@@ -1081,6 +1222,10 @@ function App() {
 
   const goToCareer = () => {
     setGameState('career');
+  };
+
+  const goToGlossary = () => {
+    setGameState('glossary');
   };
 
   const backToFinal = () => {
@@ -1181,11 +1326,19 @@ function App() {
         <FinalScreen
           onRestart={restartGame}
           onViewCareer={goToCareer}
+          onGlossary={goToGlossary}
         />
       )}
 
       {gameState === 'career' && (
         <FutureWithPythonScreen
+          onRestart={restartGame}
+          onBack={backToFinal}
+        />
+      )}
+
+      {gameState === 'glossary' && (
+        <GlossaryScreen
           onRestart={restartGame}
           onBack={backToFinal}
         />
