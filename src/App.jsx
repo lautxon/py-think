@@ -325,10 +325,10 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     setSubmitted(true);
     const isCorrect = (answer - 1) === correctIndex;
 
-    // Feedback diferente para correcta e incorrecta
+    // Feedback simple: solo explicación o respuesta correcta
     const feedbackMessage = isCorrect
-      ? '✅ ¡Correcto! ' + pregunta.explicacion
-      : `❌ La opción ${answer} no es correcta. ${pregunta.explicacion}`;
+      ? pregunta.explicacion
+      : `Respuesta correcta: Opción ${correctIndex + 1}\n\n${pregunta.explicacion}`;
 
     setFeedback({
       type: isCorrect ? 'success' : 'info',
@@ -476,26 +476,19 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
           <div className={`max-w-2xl w-full p-6 border-4 ${
             feedback.type === 'success'
               ? 'bg-green-900/90 border-pixel-green'
-              : feedback.type === 'error'
-              ? 'bg-red-900/90 border-red-500'
               : 'bg-blue-900/90 border-pixel-blue'
           }`}>
             <div className="flex items-start gap-4">
               <div className="text-4xl flex-shrink-0">
-                {feedback.type === 'success' ? '✅' : feedback.type === 'error' ? '⚠️' : '💡'}
+                {feedback.type === 'success' ? '✅' : '💡'}
               </div>
               <div className="flex-1">
                 <h3 className={`text-lg font-bold mb-3 ${
-                  feedback.type === 'error' ? 'text-red-400' : 'text-pixel-green'
+                  feedback.type === 'success' ? 'text-pixel-green' : 'text-pixel-blue'
                 }`}>
-                  {feedback.type === 'success' ? '¡Correcto!' : 'Respuesta'}
+                  {feedback.type === 'success' ? 'Correcto' : ''}
                 </h3>
-                {feedback.correctAnswer && (
-                  <p className="text-pixel-yellow text-sm mb-3 font-bold">
-                    La respuesta correcta es la Opción {feedback.correctAnswer}
-                  </p>
-                )}
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">
                   {feedback.message}
                 </p>
               </div>
