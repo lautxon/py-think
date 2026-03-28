@@ -1,0 +1,134 @@
+{
+  "home": {
+    "title": "PYTHON CODE PUZZLE",
+    "subtitle": "Aprende a pensar como programador",
+    "startButton": "INICIAR JUEGO",
+    "glossaryButton": "GLOSARIO",
+    "instructions": {
+      "q1": "Responde preguntas",
+      "q2": "Terminal virtual",
+      "q3": "3 Niveles"
+    }
+  },
+  "pythonIntro": {
+    "title": "¿Qué es Python?",
+    "intro": "Antes de comenzar tu aventura, conozcamos el lenguaje que vas a aprender:",
+    "startButton": "¡ENTENDIDO! COMENZAR AVENTURA",
+    "sections": {
+      "whatIs": {
+        "icon": "🐍",
+        "title": "¿Qué es Python?",
+        "content": "Python es un lenguaje de programación creado por Guido van Rossum a finales de 1989. Su nombre viene del grupo de comedia británico \"Monty Python\", no de la serpiente.\n\nEs como aprender un nuevo idioma, pero en lugar de comunicarte con personas, te comunicás con la computadora. Python es conocido por su sintaxis clara y legible, casi como leer inglés."
+      },
+      "type": {
+        "icon": "📐",
+        "title": "Tipo de Lenguaje",
+        "content": "Python es un lenguaje:\n\n✓ Formal: Tiene reglas gramaticales estrictas (sintaxis) que deben seguirse exactamente.\n\n✓ De programación: Permite escribir instrucciones que la computadora ejecuta.\n\n✓ De alto nivel: Está más cerca del lenguaje humano que del código máquina. No necesitás gestionar memoria manualmente.\n\n✓ Orientado a objetos: Todo en Python es un \"objeto\" con propiedades y comportamientos.\n\n✓ Interpretado: El código se ejecuta línea por línea, sin necesidad de compilar primero.\n\n✓ Dinámico: Las variables no tienen tipo fijo - Python lo detecta automáticamente."
+      },
+      "whyUse": {
+        "icon": "🚀",
+        "title": "¿Por qué se usa Python?",
+        "content": "Python es uno de los lenguajes más populares del mundo porque:\n\n✓ Fácil de aprender: Su sintaxis es clara y requiere menos código que otros lenguajes.\n\n✓ Versátil: Sirve para web, datos, IA, automatización, juegos, y más.\n\n✓ Comunidad enorme: Millones de desarrolladores crean librerías gratuitas para todo.\n\n✓ Productividad: Podés construir prototipos rápidamente y probar ideas al instante.\n\n✓ Legible: El código es fácil de entender, incluso meses después de escribirlo."
+      },
+      "usedFor": {
+        "icon": "💼",
+        "title": "¿Para qué se usa Python?",
+        "content": "Python se usa en áreas diversas:\n\n🌐 Desarrollo Web: Django, Flask (Instagram, Pinterest)\n\n📊 Ciencia de Datos: Análisis, visualización, estadísticas\n\n🤖 Inteligencia Artificial: Machine Learning, Deep Learning, ChatGPT\n\n🔬 Investigación Científica: Física, biología, astronomía\n\n💰 Finanzas: Trading algorítmico, análisis de riesgos\n\n🎮 Juegos: Prototipado, herramientas de desarrollo\n\n🤖 Automatización: Scripts que hacen tareas repetitivas\n\n📱 Aplicaciones Desktop: Interfaces gráficas, herramientas"
+      },
+      "howToUse": {
+        "icon": "👨‍💻",
+        "title": "¿Cómo se usa Python?",
+        "content": "Python se usa escribiendo código en archivos con extensión .py:\n\n# Mi primer programa\nprint(\"¡Hola, mundo!\")\n\n# Variables\nnombre = \"Juan\"\nedad = 25\n\n# Condicionales\nif edad >= 18:\n    print(\"Mayor de edad\")\nelse:\n    print(\"Menor de edad\")\n\n# Bucles\nfor i in range(5):\n    print(f\"Número: {i}\")\n\nEl código se ejecuta con: python archivo.py\n\nTambién podés usar Python en modo interactivo, Jupyter Notebooks, o entornos como VS Code."
+      },
+      "whoUses": {
+        "icon": "🏢",
+        "title": "¿Quiénes usan Python?",
+        "content": "Las empresas más importantes del mundo usan Python:\n\n🚀 NASA: Análisis de datos de telescopios, simulaciones de vuelo, procesamiento de imágenes satelitales.\n\n🎵 Spotify: Sistema de recomendaciones de música, análisis de audio, backend de servicios.\n\n🎬 Netflix: Algoritmos de recomendación, análisis de viewing, infraestructura de servidores.\n\n🔍 Google: Búsqueda web, YouTube (está construido con Python), TensorFlow (IA).\n\n📸 Instagram: Backend que maneja miles de millones de posts diarios.\n\n🛒 Amazon: Recomendaciones de productos, logística, AWS (Amazon Web Services).\n\n🚗 Tesla: Sistemas de auto-piloto, análisis de datos de vehículos.\n\n💬 Meta (Facebook): Infraestructura, IA, análisis de datos.\n\n🏦 JPMorgan Chase: Trading algorítmico, detección de fraudes."
+      },
+      "ai": {
+        "icon": "🤖",
+        "title": "Python e Inteligencia Artificial",
+        "content": "Python es el lenguaje #1 para IA y Machine Learning:\n\n🧠 Librerías poderosas: TensorFlow, PyTorch, scikit-learn, Keras.\n\n📚 Recursos educativos: La mayoría de cursos de IA usan Python.\n\n🔬 Investigación: Los papers de IA publican código en Python.\n\n💼 Industria: ChatGPT, Midjourney, Stable Diffusion - todos usan Python.\n\n¿Por qué Python para IA?\n- Sintaxis simple para algoritmos complejos\n- Ecosistema maduro de librerías de IA\n- Integración con C++ para performance\n- Comunidad activa en investigación\n\nLa IA está transformando el mundo, y Python es la herramienta principal para crearla."
+      },
+      "importance": {
+        "icon": "🔮",
+        "title": "Importancia de Python",
+        "content": "Python es crucial para el desarrollo actual y futuro:\n\n📈 Crecimiento: Es el lenguaje más enseñado en universidades.\n\n🌍 Demanda laboral: Millones de empleos requieren Python.\n\n🚀 Futuro: IA, automatización, y ciencia de datos crecerán con Python.\n\n🎓 Educación: Es el primer lenguaje para millones de estudiantes.\n\n🔓 Open Source: Todo el ecosistema es gratuito y accesible.\n\nAprender Python es una inversión en tu futuro.\n\nNo es solo un lenguaje de programación - es una habilidad que te permitirá:\n- Automatizar tareas aburridas\n- Analizar datos y tomar mejores decisiones\n- Crear productos digitales\n- Entender el mundo tecnológico\n- Trabajar en industrias del futuro\n\n¡Estás a punto de comenzar un viaje increíble! 🚀"
+      }
+    },
+    "tip": "💡 Consejo: No necesitás memorizar todo ahora. La programación se aprende practicando. ¡Vamos a jugar!"
+  },
+  "settings": {
+    "title": "Configuración",
+    "contrast": "Contraste del Verde",
+    "options": {
+      "normal": "Normal",
+      "normalDesc": "Verde neón original (estilo 8-bit)",
+      "soft": "Suave",
+      "softDesc": "Verde más oscuro (recomendado)",
+      "high": "Alto",
+      "highDesc": "Máximo contraste (accesibilidad)"
+    },
+    "info": "💡 La configuración se guarda automáticamente y persiste entre sesiones.",
+    "close": "CERRAR"
+  },
+  "pause": {
+    "title": "JUEGO PAUSADO",
+    "subtitle": "El juego está en pausa",
+    "continue": "CONTINUAR",
+    "restart": "REINICIAR NIVEL",
+    "exit": "SALIR AL INICIO",
+    "tip": "💡 Presioná P o ESC para pausar/reanudar"
+  },
+  "question": {
+    "question": "Pregunta",
+    "progress": "PROGRESO",
+    "notes": "Apuntes",
+    "pause": "Pausa",
+    "terminal": "Python Terminal",
+    "input": "Ingresa tu respuesta (1-3):",
+    "submit": "ENVIAR RESPUESTA",
+    "submitting": "Procesando...",
+    "lastQuestion": "¡Última pregunta del nivel!",
+    "remaining": "Faltan {{count}} preguntas"
+  },
+  "feedback": {
+    "correct": "¡Correcto!",
+    "incorrect": "Respuesta",
+    "correctAnswer": "La respuesta correcta es la Opción {{number}}",
+    "invalidInput": "⚠️ Ingresa un número válido (1, 2 o 3)"
+  },
+  "theory": {
+    "startButton": "¡ENTENDIDO! COMENZAR NIVEL",
+    "glossaryButton": "GLOSARIO",
+    "keyConcepts": "Conceptos Clave (disponibles como apuntes durante el juego)"
+  },
+  "final": {
+    "congratulations": "¡Felicidades, Programador!",
+    "whyThinkTitle": "¿Por qué un programador piensa así?",
+    "whatForTitle": "¿Para qué un programador piensa así?",
+    "careerButton": "TU FUTURO CON PYTHON",
+    "glossaryButton": "GLOSARIO",
+    "restartButton": "JUGAR DE NUEVO",
+    "footer": "🎮 Python Code Puzzle - Aprende a Pensar como Programador\nHecho con ❤️ para futuros desarrolladores"
+  },
+  "career": {
+    "title": "Tu Futuro con Python",
+    "intro": "Completaste el juego. Ahora comienza tu verdadera aventura...",
+    "backButton": "VOLVER AL RESUMEN",
+    "restartButton": "JUGAR DE NUEVO",
+    "tip": "💡 Consejo: No necesitás saber todo antes de empezar. Aprendé haciendo, fallá, iterá. El mercado laboral valora más proyectos reales que certificaciones."
+  },
+  "glossary": {
+    "title": "Glosario de Términos",
+    "intro": "Diccionario de términos esenciales de Python y programación:",
+    "search": "Buscar término...",
+    "all": "Todos",
+    "found": "{{count}} términos encontrados",
+    "backButton": "VOLVER AL RESUMEN",
+    "restartButton": "JUGAR DE NUEVO"
+  },
+  "common": {
+    "loading": "Cargando..."
+  }
+}

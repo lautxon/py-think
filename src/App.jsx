@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings, Rocket } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings, Rocket, Globe } from 'lucide-react';
 import { gsap } from 'gsap';
 import { gameData } from './data/gameData';
 
@@ -80,9 +81,15 @@ function PythonIntroScreen({ onStart }) {
 
 // Pantalla de Inicio
 function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
+  const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const characterRef = useRef(null);
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(newLang);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -125,6 +132,16 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
         <Settings size={24} />
       </button>
 
+      {/* Language Switcher */}
+      <button
+        onClick={toggleLanguage}
+        className="absolute top-4 left-4 p-3 bg-pixel-dark border-2 border-pixel-purple text-pixel-purple hover:border-pixel-green hover:text-pixel-green transition-colors z-50 flex items-center gap-2"
+        title="Cambiar idioma / Change language"
+      >
+        <Globe size={20} />
+        <span className="text-xs font-bold">{i18n.language === 'es' ? 'ES' : 'EN'}</span>
+      </button>
+
       {/* Main Card */}
       <div className="relative z-50 max-w-4xl w-full bg-pixel-gray/90 border-4 border-pixel-green p-8 md:p-12 rounded-lg shadow-2xl">
         {/* 8-bit Character */}
@@ -135,11 +152,11 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
         {/* Title */}
         <div ref={titleRef} className="text-center mb-8">
           <h1 className="text-3xl md:text-5xl text-pixel-green mb-6 drop-shadow-lg">
-            PYTHON CODE PUZZLE
+            {t('home.title')}
           </h1>
           <div className="w-48 md:w-64 h-1 bg-gradient-to-r from-pixel-green via-pixel-blue to-pixel-purple mx-auto mb-6"></div>
           <p className="text-pixel-blue text-base md:text-xl animate-blink">
-            &gt; Aprende a pensar como programador_
+            &gt; {t('home.subtitle')}
           </p>
         </div>
 
@@ -149,7 +166,7 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
           className="start-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-4"
         >
           <Play size={24} />
-          INICIAR JUEGO
+          {t('home.startButton')}
           <ChevronRight size={24} />
         </button>
 
@@ -159,22 +176,22 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
           className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-8 py-3 text-base font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors mb-8"
         >
           <BookOpen size={24} />
-          GLOSARIO
+          {t('home.glossaryButton')}
         </button>
 
         {/* Instructions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-sm text-gray-400">
           <div className="bg-pixel-dark p-4 border-2 border-pixel-blue">
             <p className="text-pixel-green mb-2">📟</p>
-            <p>Responde preguntas</p>
+            <p>{t('home.instructions.q1')}</p>
           </div>
           <div className="bg-pixel-dark p-4 border-2 border-pixel-purple">
             <p className="text-pixel-green mb-2">🎮</p>
-            <p>Terminal virtual</p>
+            <p>{t('home.instructions.q2')}</p>
           </div>
           <div className="bg-pixel-dark p-4 border-2 border-pixel-green">
             <p className="text-pixel-green mb-2">🏆</p>
-            <p>3 Niveles</p>
+            <p>{t('home.instructions.q3')}</p>
           </div>
         </div>
       </div>

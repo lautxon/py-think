@@ -1,0 +1,134 @@
+{
+  "home": {
+    "title": "PYTHON CODE PUZZLE",
+    "subtitle": "Learn to Think Like a Programmer",
+    "startButton": "START GAME",
+    "glossaryButton": "GLOSSARY",
+    "instructions": {
+      "q1": "Answer questions",
+      "q2": "Virtual terminal",
+      "q3": "3 Levels"
+    }
+  },
+  "pythonIntro": {
+    "title": "What is Python?",
+    "intro": "Before starting your adventure, let's learn about the language you'll be learning:",
+    "startButton": "GOT IT! START ADVENTURE",
+    "sections": {
+      "whatIs": {
+        "icon": "🐍",
+        "title": "What is Python?",
+        "content": "Python is a programming language created by Guido van Rossum in late 1989. Its name comes from the British comedy group \"Monty Python\", not the snake.\n\nIt's like learning a new language, but instead of communicating with people, you communicate with the computer. Python is known for its clear and readable syntax, almost like reading English."
+      },
+      "type": {
+        "icon": "📐",
+        "title": "Language Type",
+        "content": "Python is a:\n\n✓ Formal language: It has strict grammatical rules (syntax) that must be followed exactly.\n\n✓ Programming language: It allows writing instructions that the computer executes.\n\n✓ High-level language: It's closer to human language than machine code. You don't need to manage memory manually.\n\n✓ Object-oriented: Everything in Python is an \"object\" with properties and behaviors.\n\n✓ Interpreted: Code executes line by line, without prior compilation.\n\n✓ Dynamic: Variables don't have a fixed type - Python detects it automatically."
+      },
+      "whyUse": {
+        "icon": "🚀",
+        "title": "Why Use Python?",
+        "content": "Python is one of the most popular languages in the world because:\n\n✓ Easy to learn: Its syntax is clear and requires less code than other languages.\n\n✓ Versatile: Used for web, data, AI, automation, games, and more.\n\n✓ Huge community: Millions of developers create free libraries for everything.\n\n✓ Productivity: You can build prototypes quickly and test ideas instantly.\n\n✓ Readable: Code is easy to understand, even months after writing it."
+      },
+      "usedFor": {
+        "icon": "💼",
+        "title": "What is Python Used For?",
+        "content": "Python is used in diverse areas:\n\n🌐 Web Development: Django, Flask (Instagram, Pinterest)\n\n📊 Data Science: Analysis, visualization, statistics\n\n🤖 Artificial Intelligence: Machine Learning, Deep Learning, ChatGPT\n\n🔬 Scientific Research: Physics, biology, astronomy\n\n💰 Finance: Algorithmic trading, risk analysis\n\n🎮 Games: Prototyping, development tools\n\n🤖 Automation: Scripts that do repetitive tasks\n\n📱 Desktop Applications: Graphical interfaces, tools"
+      },
+      "howToUse": {
+        "icon": "👨‍💻",
+        "title": "How to Use Python?",
+        "content": "Python is used by writing code in files with .py extension:\n\n# My first program\nprint(\"Hello, World!\")\n\n# Variables\nname = \"John\"\nage = 25\n\n# Conditionals\nif age >= 18:\n    print(\"Adult\")\nelse:\n    print(\"Minor\")\n\n# Loops\nfor i in range(5):\n    print(f\"Number: {i}\")\n\nCode is executed with: python file.py\n\nYou can also use Python in interactive mode, Jupyter Notebooks, or environments like VS Code."
+      },
+      "whoUses": {
+        "icon": "🏢",
+        "title": "Who Uses Python?",
+        "content": "The world's most important companies use Python:\n\n🚀 NASA: Telescope data analysis, flight simulations, satellite image processing.\n\n🎵 Spotify: Music recommendation system, audio analysis, service backend.\n\n🎬 Netflix: Recommendation algorithms, viewing analysis, server infrastructure.\n\n🔍 Google: Web search, YouTube (built with Python), TensorFlow (AI).\n\n📸 Instagram: Backend handling billions of daily posts.\n\n🛒 Amazon: Product recommendations, logistics, AWS (Amazon Web Services).\n\n🚗 Tesla: Auto-pilot systems, vehicle data analysis.\n\n💬 Meta (Facebook): Infrastructure, AI, data analysis.\n\n🏦 JPMorgan Chase: Algorithmic trading, fraud detection."
+      },
+      "ai": {
+        "icon": "🤖",
+        "title": "Python and Artificial Intelligence",
+        "content": "Python is the #1 language for AI and Machine Learning:\n\n🧠 Powerful libraries: TensorFlow, PyTorch, scikit-learn, Keras.\n\n📚 Educational resources: Most AI courses use Python.\n\n🔬 Research: AI papers publish code in Python.\n\n💼 Industry: ChatGPT, Midjourney, Stable Diffusion - all use Python.\n\nWhy Python for AI?\n- Simple syntax for complex algorithms\n- Mature ecosystem of AI libraries\n- Integration with C++ for performance\n- Active research community\n\nAI is transforming the world, and Python is the main tool for creating it."
+      },
+      "importance": {
+        "icon": "🔮",
+        "title": "Importance of Python",
+        "content": "Python is crucial for current and future development:\n\n📈 Growth: It's the most taught language in universities.\n\n🌍 Job demand: Millions of jobs require Python.\n\n🚀 Future: AI, automation, and data science will grow with Python.\n\n🎓 Education: It's the first language for millions of students.\n\n🔓 Open Source: The entire ecosystem is free and accessible.\n\nLearning Python is an investment in your future.\n\nIt's not just a programming language - it's a skill that will allow you to:\n- Automate boring tasks\n- Analyze data and make better decisions\n- Create digital products\n- Understand the technological world\n- Work in future industries\n\nYou're about to start an incredible journey! 🚀"
+      }
+    },
+    "tip": "💡 Tip: You don't need to memorize everything now. Programming is learned by practicing. Let's play!"
+  },
+  "settings": {
+    "title": "Settings",
+    "contrast": "Green Contrast",
+    "options": {
+      "normal": "Normal",
+      "normalDesc": "Original neon green (8-bit style)",
+      "soft": "Soft",
+      "softDesc": "Darker green (recommended)",
+      "high": "High",
+      "highDesc": "Maximum contrast (accessibility)"
+    },
+    "info": "💡 Settings are saved automatically and persist between sessions.",
+    "close": "CLOSE"
+  },
+  "pause": {
+    "title": "GAME PAUSED",
+    "subtitle": "The game is paused",
+    "continue": "CONTINUE",
+    "restart": "RESTART LEVEL",
+    "exit": "EXIT TO HOME",
+    "tip": "💡 Press P or ESC to pause/resume"
+  },
+  "question": {
+    "question": "Question",
+    "progress": "PROGRESS",
+    "notes": "Notes",
+    "pause": "Pause",
+    "terminal": "Python Terminal",
+    "input": "Enter your answer (1-3):",
+    "submit": "SUBMIT ANSWER",
+    "submitting": "Processing...",
+    "lastQuestion": "Last question of the level!",
+    "remaining": "{{count}} questions remaining"
+  },
+  "feedback": {
+    "correct": "Correct!",
+    "incorrect": "Answer",
+    "correctAnswer": "The correct answer is Option {{number}}",
+    "invalidInput": "⚠️ Enter a valid number (1, 2 or 3)"
+  },
+  "theory": {
+    "startButton": "GOT IT! START LEVEL",
+    "glossaryButton": "GLOSSARY",
+    "keyConcepts": "Key Concepts (available as notes during the game)"
+  },
+  "final": {
+    "congratulations": "Congratulations, Programmer!",
+    "whyThinkTitle": "Why Does a Programmer Think Like This?",
+    "whatForTitle": "What Does a Programmer Think Like This For?",
+    "careerButton": "YOUR FUTURE WITH PYTHON",
+    "glossaryButton": "GLOSSARY",
+    "restartButton": "PLAY AGAIN",
+    "footer": "🎮 Python Code Puzzle - Learn to Think Like a Programmer\nMade with ❤️ for future developers"
+  },
+  "career": {
+    "title": "Your Future with Python",
+    "intro": "You completed the game. Now your real adventure begins...",
+    "backButton": "BACK TO SUMMARY",
+    "restartButton": "PLAY AGAIN",
+    "tip": "💡 Tip: You don't need to know everything before starting. Learn by doing, failing, iterating. The job market values real projects more than certifications."
+  },
+  "glossary": {
+    "title": "Glossary of Terms",
+    "intro": "Dictionary of essential Python and programming terms:",
+    "search": "Search term...",
+    "all": "All",
+    "found": "{{count}} terms found",
+    "backButton": "BACK TO SUMMARY",
+    "restartButton": "PLAY AGAIN"
+  },
+  "common": {
+    "loading": "Loading..."
+  }
+}
