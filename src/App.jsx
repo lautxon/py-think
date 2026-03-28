@@ -470,7 +470,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 
       {/* Feedback Modal - Centrado como ventana flotante */}
       {feedback && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => {}}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 font-pixel">
           <div className={`max-w-2xl w-full p-6 border-4 ${
             feedback.type === 'success'
               ? 'bg-green-900/90 border-pixel-green'
