@@ -1132,7 +1132,6 @@ Tu viaje apenas comienza. Cada línea de código que escribas fortalecerá estas
           { termino: 'Coverage', definicion: 'Medida de cuánto código está cubierto por tests.' }
         ]
       },
-      { termino: '💰 Contexto Laboral', definicion: 'Términos relacionados con el trabajo en tecnología.' },
       {
         nombre: '💼 Contexto Laboral',
         terminos: [
