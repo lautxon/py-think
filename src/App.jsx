@@ -79,7 +79,7 @@ function PythonIntroScreen({ onStart }) {
 }
 
 // Pantalla de Inicio
-function HomeScreen({ onStart, onOpenSettings }) {
+function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const characterRef = useRef(null);
@@ -146,11 +146,20 @@ function HomeScreen({ onStart, onOpenSettings }) {
         {/* Start Button */}
         <button
           onClick={onStart}
-          className="start-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-8"
+          className="start-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-4"
         >
           <Play size={24} />
           INICIAR JUEGO
           <ChevronRight size={24} />
+        </button>
+
+        {/* Glossary Button */}
+        <button
+          onClick={onGlossary}
+          className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-8 py-3 text-base font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors mb-8"
+        >
+          <BookOpen size={24} />
+          GLOSARIO
         </button>
 
         {/* Instructions */}
@@ -325,14 +334,16 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     setSubmitted(true);
     const isCorrect = (answer - 1) === correctIndex;
 
+    // Feedback diferente para correcta e incorrecta
     const feedbackMessage = isCorrect
       ? '✅ ¡Correcto! ' + pregunta.explicacion
-      : `❌ La respuesta correcta era la opción ${correctIndex + 1}. ${pregunta.explicacion}`;
+      : `❌ La opción ${answer} no es correcta. ${pregunta.explicacion}`;
 
     setFeedback({
       type: isCorrect ? 'success' : 'info',
       message: feedbackMessage,
-      isCorrect
+      isCorrect,
+      correctAnswer: isCorrect ? null : correctIndex + 1
     });
 
     // Calcular tiempo dinámico según longitud del feedback
@@ -486,8 +497,13 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
                 <h3 className={`text-lg font-bold mb-3 ${
                   feedback.type === 'error' ? 'text-red-400' : 'text-pixel-green'
                 }`}>
-                  {feedback.type === 'success' ? '¡Correcto!' : feedback.type === 'error' ? 'Error' : 'Respuesta'}
+                  {feedback.type === 'success' ? '¡Correcto!' : 'Respuesta'}
                 </h3>
+                {feedback.correctAnswer && (
+                  <p className="text-pixel-yellow text-sm mb-3 font-bold">
+                    La respuesta correcta es la Opción {feedback.correctAnswer}
+                  </p>
+                )}
                 <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                   {feedback.message}
                 </p>
@@ -520,7 +536,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 }
 
 // Pantalla de Teoría
-function TheoryScreen({ nivel, onStart }) {
+function TheoryScreen({ nivel, onStart, onGlossary }) {
   const containerRef = useRef(null);
   const [activeTema, setActiveTema] = useState(0);
   const [expandedSection, setExpandedSection] = useState(null);
@@ -653,14 +669,24 @@ function TheoryScreen({ nivel, onStart }) {
         </div>
 
         {/* Start Button */}
-        <button
-          onClick={onStart}
-          className="start-theory-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg md:text-xl font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
-        >
-          <Terminal size={24} />
-          ¡ENTENDIDO! COMENZAR NIVEL
-          <ChevronRight size={24} />
-        </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            onClick={onStart}
+            className="start-theory-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors"
+          >
+            <Terminal size={24} />
+            ¡ENTENDIDO! COMENZAR NIVEL
+            <ChevronRight size={24} />
+          </button>
+
+          <button
+            onClick={onGlossary}
+            className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
+          >
+            <BookOpen size={24} />
+            GLOSARIO
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -1294,6 +1320,7 @@ function App() {
         <HomeScreen
           onStart={startGame}
           onOpenSettings={() => setShowSettings(true)}
+          onGlossary={goToGlossary}
         />
       )}
 
@@ -1307,6 +1334,7 @@ function App() {
         <TheoryScreen
           nivel={nivelActual}
           onStart={startLevel}
+          onGlossary={goToGlossary}
         />
       )}
 
