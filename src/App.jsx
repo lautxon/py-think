@@ -325,16 +325,15 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     setSubmitted(true);
     const isCorrect = (answer - 1) === correctIndex;
 
-    // Feedback simple: solo explicación o respuesta correcta
-    const feedbackMessage = isCorrect
-      ? pregunta.explicacion
-      : `Respuesta correcta: Opción ${correctIndex + 1}\n\n${pregunta.explicacion}`;
+    // Título y mensaje separados
+    const feedbackTitle = isCorrect ? '¡Correcto!' : `Opción correcta ${correctIndex + 1}`;
+    const feedbackMessage = pregunta.explicacion;
 
     setFeedback({
       type: isCorrect ? 'success' : 'info',
+      title: feedbackTitle,
       message: feedbackMessage,
       isCorrect,
-      correctAnswer: isCorrect ? null : correctIndex + 1
     });
 
     // Calcular tiempo dinámico según longitud del feedback
@@ -486,9 +485,9 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
                 <h3 className={`text-lg font-bold mb-3 ${
                   feedback.type === 'success' ? 'text-pixel-green' : 'text-pixel-blue'
                 }`}>
-                  {feedback.type === 'success' ? 'Correcto' : ''}
+                  {feedback.title}
                 </h3>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                   {feedback.message}
                 </p>
               </div>
