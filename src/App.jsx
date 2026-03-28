@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings, Rocket, Globe } from 'lucide-react';
+import { Terminal, Play, ChevronRight, RotateCcw, Trophy, Brain, Code2, Sparkles, BookOpen, Lightbulb, X, HelpCircle, Settings, Rocket } from 'lucide-react';
 import { gsap } from 'gsap';
 import { gameData } from './data/gameData';
 
@@ -80,16 +79,10 @@ function PythonIntroScreen({ onStart }) {
 }
 
 // Pantalla de Inicio
-function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
-  const { t, i18n } = useTranslation();
+function HomeScreen({ onStart, onOpenSettings }) {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const characterRef = useRef(null);
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'es' ? 'en' : 'es';
-    i18n.changeLanguage(newLang);
-  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -132,16 +125,6 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
         <Settings size={24} />
       </button>
 
-      {/* Language Switcher */}
-      <button
-        onClick={toggleLanguage}
-        className="absolute top-4 left-4 p-3 bg-pixel-dark border-2 border-pixel-purple text-pixel-purple hover:border-pixel-green hover:text-pixel-green transition-colors z-50 flex items-center gap-2"
-        title="Cambiar idioma / Change language"
-      >
-        <Globe size={20} />
-        <span className="text-xs font-bold">{i18n.language === 'es' ? 'ES' : 'EN'}</span>
-      </button>
-
       {/* Main Card */}
       <div className="relative z-50 max-w-4xl w-full bg-pixel-gray/90 border-4 border-pixel-green p-8 md:p-12 rounded-lg shadow-2xl">
         {/* 8-bit Character */}
@@ -152,46 +135,37 @@ function HomeScreen({ onStart, onOpenSettings, onGlossary }) {
         {/* Title */}
         <div ref={titleRef} className="text-center mb-8">
           <h1 className="text-3xl md:text-5xl text-pixel-green mb-6 drop-shadow-lg">
-            {t('home.title')}
+            PYTHON CODE PUZZLE
           </h1>
           <div className="w-48 md:w-64 h-1 bg-gradient-to-r from-pixel-green via-pixel-blue to-pixel-purple mx-auto mb-6"></div>
           <p className="text-pixel-blue text-base md:text-xl animate-blink">
-            &gt; {t('home.subtitle')}
+            &gt; Aprende a pensar como programador_
           </p>
         </div>
 
         {/* Start Button */}
         <button
           onClick={onStart}
-          className="start-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-4"
+          className="start-btn pixel-btn w-full bg-pixel-green text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-blue transition-colors mb-8"
         >
           <Play size={24} />
-          {t('home.startButton')}
+          INICIAR JUEGO
           <ChevronRight size={24} />
-        </button>
-
-        {/* Glossary Button */}
-        <button
-          onClick={onGlossary}
-          className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-8 py-3 text-base font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors mb-8"
-        >
-          <BookOpen size={24} />
-          {t('home.glossaryButton')}
         </button>
 
         {/* Instructions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-sm text-gray-400">
           <div className="bg-pixel-dark p-4 border-2 border-pixel-blue">
             <p className="text-pixel-green mb-2">📟</p>
-            <p>{t('home.instructions.q1')}</p>
+            <p>Responde preguntas</p>
           </div>
           <div className="bg-pixel-dark p-4 border-2 border-pixel-purple">
             <p className="text-pixel-green mb-2">🎮</p>
-            <p>{t('home.instructions.q2')}</p>
+            <p>Terminal virtual</p>
           </div>
           <div className="bg-pixel-dark p-4 border-2 border-pixel-green">
             <p className="text-pixel-green mb-2">🏆</p>
-            <p>{t('home.instructions.q3')}</p>
+            <p>3 Niveles</p>
           </div>
         </div>
       </div>
@@ -553,7 +527,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 }
 
 // Pantalla de Teoría
-function TheoryScreen({ nivel, onStart, onGlossary }) {
+function TheoryScreen({ nivel, onStart, onGlossary, currentLevel }) {
   const containerRef = useRef(null);
   const [activeTema, setActiveTema] = useState(0);
   const [expandedSection, setExpandedSection] = useState(null);
@@ -697,7 +671,7 @@ function TheoryScreen({ nivel, onStart, onGlossary }) {
           </button>
 
           <button
-            onClick={onGlossary}
+            onClick={() => onGlossary(currentLevel)}
             className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-6 py-4 text-base md:text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
           >
             <BookOpen size={24} />
@@ -985,7 +959,7 @@ function FinalScreen({ onRestart, onViewCareer, onGlossary }) {
           </button>
 
           <button
-            onClick={onGlossary}
+            onClick={() => onGlossary(null)}
             className="pixel-btn w-full bg-pixel-purple text-pixel-dark px-4 py-4 text-xs md:text-sm font-bold flex items-center justify-center gap-2 hover:bg-pixel-green transition-colors"
           >
             <BookOpen size={20} />
@@ -1097,7 +1071,7 @@ function FutureWithPythonScreen({ onRestart, onBack }) {
 }
 
 // Pantalla de Glosario
-function GlossaryScreen({ onBack, onRestart }) {
+function GlossaryScreen({ onBack, onRestart, fromLevel }) {
   const containerRef = useRef(null);
   const glosario = gameData.glosario;
   const [searchTerm, setSearchTerm] = useState('');
@@ -1207,21 +1181,13 @@ function GlossaryScreen({ onBack, onRestart }) {
         </div>
 
         {/* Action Buttons */}
-        <div className="glossary-actions grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="glossary-actions grid grid-cols-1 gap-4">
           <button
-            onClick={onBack}
+            onClick={fromLevel !== null ? onBack : onRestart}
             className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
           >
             <ChevronRight size={24} />
-            VOLVER AL RESUMEN
-          </button>
-
-          <button
-            onClick={onRestart}
-            className="pixel-btn w-full bg-pixel-dark border-2 border-pixel-green text-pixel-green px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green hover:text-pixel-dark transition-colors"
-          >
-            <RotateCcw size={24} />
-            JUGAR DE NUEVO
+            {fromLevel !== null ? 'VOLVER AL NIVEL' : 'VOLVER AL RESUMEN'}
           </button>
         </div>
       </div>
@@ -1242,6 +1208,7 @@ function App() {
     return saved || 'soft';
   });
   const [isPaused, setIsPaused] = useState(false);
+  const [glossaryFromLevel, setGlossaryFromLevel] = useState(null); // null = desde final, number = desde nivel
 
   // Apply contrast setting to document
   useEffect(() => {
@@ -1267,12 +1234,19 @@ function App() {
     setGameState('career');
   };
 
-  const goToGlossary = () => {
+  const goToGlossary = (fromLevel = null) => {
+    setGlossaryFromLevel(fromLevel);
     setGameState('glossary');
   };
 
   const backToFinal = () => {
+    setGlossaryFromLevel(null);
     setGameState('final');
+  };
+
+  const backToTheory = () => {
+    setGlossaryFromLevel(null);
+    setGameState('theory');
   };
 
   const handlePause = () => {
@@ -1337,7 +1311,6 @@ function App() {
         <HomeScreen
           onStart={startGame}
           onOpenSettings={() => setShowSettings(true)}
-          onGlossary={goToGlossary}
         />
       )}
 
@@ -1352,6 +1325,7 @@ function App() {
           nivel={nivelActual}
           onStart={startLevel}
           onGlossary={goToGlossary}
+          currentLevel={currentLevel}
         />
       )}
 
@@ -1385,7 +1359,8 @@ function App() {
       {gameState === 'glossary' && (
         <GlossaryScreen
           onRestart={restartGame}
-          onBack={backToFinal}
+          onBack={backToTheory}
+          fromLevel={glossaryFromLevel}
         />
       )}
 
