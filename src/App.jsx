@@ -251,12 +251,27 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
   const [feedback, setFeedback] = useState(null);
   const [showNotes, setShowNotes] = useState(false);
   const [selectedConcept, setSelectedConcept] = useState(null);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
+  const [correctIndex, setCorrectIndex] = useState(0);
 
-  // Resetear estado cuando cambia la pregunta
+  // Shuffle options when question changes
   useEffect(() => {
     setInputValue('');
     setSubmitted(false);
     setFeedback(null);
+    
+    // Fisher-Yates shuffle para randomizar opciones
+    const indices = [0, 1, 2];
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    
+    const shuffled = indices.map(i => pregunta.opciones[i]);
+    const newCorrectIndex = indices.indexOf(pregunta.correcta);
+    
+    setShuffledOptions(shuffled);
+    setCorrectIndex(newCorrectIndex);
   }, [pregunta]);
 
   // Atajo de teclado para pausa (tecla P o ESC)
@@ -308,11 +323,11 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     }
 
     setSubmitted(true);
-    const isCorrect = (answer - 1) === pregunta.correcta;
+    const isCorrect = (answer - 1) === correctIndex;
 
     const feedbackMessage = isCorrect
       ? '✅ ¡Correcto! ' + pregunta.explicacion
-      : `❌ La respuesta correcta era la opción ${pregunta.correcta + 1}. ${pregunta.explicacion}`;
+      : `❌ La respuesta correcta era la opción ${correctIndex + 1}. ${pregunta.explicacion}`;
 
     setFeedback({
       type: isCorrect ? 'success' : 'info',
@@ -408,7 +423,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
 
           {/* Options */}
           <div className="options-list space-y-3 mb-8">
-            {pregunta.opciones.map((opcion, idx) => (
+            {shuffledOptions.map((opcion, idx) => (
               <div
                 key={idx}
                 className="bg-pixel-dark p-4 border-2 border-pixel-blue hover:border-pixel-green transition-colors cursor-default"
@@ -450,25 +465,37 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
               {submitted ? 'Procesando...' : 'ENVIAR RESPUESTA'}
             </button>
           </form>
-
-          {/* Feedback */}
-          {feedback && (
-            <div className={`mt-6 p-4 border-4 ${
-              feedback.type === 'success'
-                ? 'bg-green-900/30 border-pixel-green'
-                : feedback.type === 'error'
-                ? 'bg-red-900/30 border-red-500'
-                : 'bg-blue-900/30 border-pixel-blue'
-            }`}>
-              <p className={`text-sm md:text-base ${
-                feedback.type === 'error' ? 'text-red-400' : 'text-gray-300'
-              }`}>
-                {feedback.message}
-              </p>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Feedback Modal - Centrado como ventana flotante */}
+      {feedback && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => {}}>
+          <div className={`max-w-2xl w-full p-6 border-4 ${
+            feedback.type === 'success'
+              ? 'bg-green-900/90 border-pixel-green'
+              : feedback.type === 'error'
+              ? 'bg-red-900/90 border-red-500'
+              : 'bg-blue-900/90 border-pixel-blue'
+          }`}>
+            <div className="flex items-start gap-4">
+              <div className="text-4xl flex-shrink-0">
+                {feedback.type === 'success' ? '✅' : feedback.type === 'error' ? '⚠️' : '💡'}
+              </div>
+              <div className="flex-1">
+                <h3 className={`text-lg font-bold mb-3 ${
+                  feedback.type === 'error' ? 'text-red-400' : 'text-pixel-green'
+                }`}>
+                  {feedback.type === 'success' ? '¡Correcto!' : feedback.type === 'error' ? 'Error' : 'Respuesta'}
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                  {feedback.message}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Panel de Apuntes */}
       {showNotes && (
