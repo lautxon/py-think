@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(find *)",
+      "Bash(sudo *)",
+      "Bash(apt-get *)",
+      "Bash(curl *)",
+      "Bash(tar *)",
+      "Bash(mkdir *)",
+      "Bash(mv *)",
+      "Bash(echo *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(sleep *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git config *)"
+    ]
+  },
+  "$version": 3
+}

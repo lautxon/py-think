@@ -240,7 +240,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'Un tipo de error en el código'
           ],
           correcta: 0,
-          explicacion: '¡Exacto! Una variable es como una "caja" con etiqueta donde guardas información que tu programa necesita usar o modificar.'
+          explicacion: 'Una variable es como una "caja" con etiqueta donde guardas información que tu programa necesita usar o modificar.'
         },
         {
           pregunta: '¿Cuál es la forma correcta de crear una variable en Python?',
@@ -250,7 +250,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'let nombre: String = "Juan"'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! Python usa sintaxis simple: solo escribes el nombre de la variable seguido del valor. Sin palabras clave como "var" o "let".'
+          explicacion: 'Python usa sintaxis simple: solo escribes el nombre de la variable seguido del valor. Sin palabras clave como "var" o "let".'
         },
         {
           pregunta: '¿Qué tipo de dato es "Hola Mundo"?',
@@ -260,7 +260,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'Boolean (booleano)'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Un String es una secuencia de caracteres entre comillas. Los strings representan texto en tu programa.'
+          explicacion: 'Un String es una secuencia de caracteres entre comillas. Los strings representan texto en tu programa.'
         },
         {
           pregunta: '¿Qué operador se usa para multiplicar en Python?',
@@ -270,7 +270,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             '#'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! El asterisco (*) es el operador de multiplicación en Python y en la mayoría de lenguajes de programación.'
+          explicacion: 'El asterisco (*) es el operador de multiplicación en Python y en la mayoría de lenguajes de programación.'
         },
         {
           pregunta: '¿Qué hace la función print()?',
@@ -280,7 +280,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'Crea un archivo PDF'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! print() muestra información en la pantalla (consola). Es fundamental para ver resultados y depurar código.'
+          explicacion: 'print() muestra información en la pantalla (consola). Es fundamental para ver resultados y depurar código.'
         },
         {
           pregunta: '¿Cuál es el resultado de: 10 + 5 * 2?',
@@ -290,7 +290,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             '15'
           ],
           correcta: 1,
-          explicacion: '¡Bien pensado! Primero se evalúa 5*2=10 (precedencia), luego 10+10=20. El orden de operaciones es crucial en programación.'
+          explicacion: 'Primero se evalúa 5*2=10 (precedencia), luego 10+10=20. El orden de operaciones es crucial en programación.'
         },
         {
           pregunta: '¿Qué es un comentario en Python?',
@@ -300,7 +300,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'Una función especial'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! Los comentarios (con #) son notas para humanos. El código se lee más fácilmente y es esencial para trabajar en equipo.'
+          explicacion: 'Los comentarios (con #) son notas para humanos. El código se lee más fácilmente y es esencial para trabajar en equipo.'
         },
         {
           pregunta: '¿Cómo se crea un comentario en Python?',
@@ -310,7 +310,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             '# Esto es un comentario'
           ],
           correcta: 2,
-          explicacion: '¡Correcto! Python usa el símbolo # para comentarios de una línea. Los comentarios documentan tu pensamiento como programador.'
+          explicacion: 'Python usa el símbolo # para comentarios de una línea. Los comentarios documentan tu pensamiento como programador.'
         },
         {
           pregunta: '¿Qué tipo de dato es True?',
@@ -320,7 +320,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'Integer'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Boolean representa verdadero (True) o falso (False). Es fundamental para tomar decisiones en tu código.'
+          explicacion: 'Boolean representa verdadero (True) o falso (False). Es fundamental para tomar decisiones en tu código.'
         },
         {
           pregunta: '¿Qué función usas para saber el tipo de dato de una variable?',
@@ -330,7 +330,7 @@ Este nivel representa el primer año de un desarrollador junior - aquí construy
             'typeof()'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! type() te dice qué tipo de dato es una variable. Conocer tus datos es esencial para programar correctamente.'
+          explicacion: 'type() te dice qué tipo de dato es una variable. Conocer tus datos es esencial para programar correctamente.'
         }
       ]
     },
@@ -421,7 +421,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'def function'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! if permite ejecutar código condicionalmente. El control de flujo es el corazón de la lógica de programación.'
+          explicacion: 'if permite ejecutar código condicionalmente. El control de flujo es el corazón de la lógica de programación.'
         },
         {
           pregunta: '¿Cuál es la sintaxis correcta para un if en Python?',
@@ -431,7 +431,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'if x > 5 then:'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Python usa dos puntos (:) e indentación, no llaves. La sintaxis limpia de Python refleja su filosofía de legibilidad.'
+          explicacion: 'Python usa dos puntos (:) e indentación, no llaves. La sintaxis limpia de Python refleja su filosofía de legibilidad.'
         },
         {
           pregunta: '¿Qué es un bucle for?',
@@ -441,7 +441,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Un tipo de variable'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! Los bucles for iteran sobre secuencias. Automatizar tareas repetitivas es poder real en programación.'
+          explicacion: 'Los bucles for iteran sobre secuencias. Automatizar tareas repetitivas es poder real en programación.'
         },
         {
           pregunta: '¿Qué hace range(5)?',
@@ -451,7 +451,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Devuelve el número 5'
           ],
           correcta: 0,
-          explicacion: '¡Correcto! range(5) genera números del 0 al 4. Python empieza en 0 por convención - entender esto evita bugs comunes.'
+          explicacion: 'range(5) genera números del 0 al 4. Python empieza en 0 por convención - entender esto evita bugs comunes.'
         },
         {
           pregunta: '¿Qué es una lista en Python?',
@@ -461,7 +461,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Una función especial'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Las listas almacenan múltiples valores. Las estructuras de datos son herramientas fundamentales para organizar información.'
+          explicacion: 'Las listas almacenan múltiples valores. Las estructuras de datos son herramientas fundamentales para organizar información.'
         },
         {
           pregunta: '¿Cómo accedes al primer elemento de una lista?',
@@ -471,7 +471,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'lista.first()'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! Python usa indexación desde 0. El primer elemento está en posición 0, no en 1. Esto es consistente en muchos lenguajes.'
+          explicacion: 'Python usa indexación desde 0. El primer elemento está en posición 0, no en 1. Esto es consistente en muchos lenguajes.'
         },
         {
           pregunta: '¿Qué es una función?',
@@ -481,7 +481,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Un error de sintaxis'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! Las funciones encapsulan lógica. El código reutilizable y modular es esencial en desarrollo profesional.'
+          explicacion: 'Las funciones encapsulan lógica. El código reutilizable y modular es esencial en desarrollo profesional.'
         },
         {
           pregunta: '¿Qué palabra clave usas para definir una función en Python?',
@@ -491,7 +491,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'func'
           ],
           correcta: 1,
-          explicacion: '¡Bien! def define funciones en Python. Los nombres claros (como def) hacen el código más legible - una prioridad en Python.'
+          explicacion: 'def define funciones en Python. Los nombres claros (como def) hacen el código más legible - una prioridad en Python.'
         },
         {
           pregunta: '¿Qué es un diccionario en Python?',
@@ -501,7 +501,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Un tipo de bucle'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! Los diccionarios almacenan datos como clave:valor. Son como bases de datos en miniatura - esenciales para datos estructurados.'
+          explicacion: 'Los diccionarios almacenan datos como clave:valor. Son como bases de datos en miniatura - esenciales para datos estructurados.'
         },
         {
           pregunta: '¿Qué hace el operador ==?',
@@ -511,7 +511,7 @@ Este nivel representa habilidades de un desarrollador con 2-3 años de experienc
             'Suma dos valores'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! == compara igualdad (devuelve True/False). Distinguir entre = (asignar) y == (comparar) es fundamental.'
+          explicacion: '== compara igualdad (devuelve True/False). Distinguir entre = (asignar) y == (comparar) es fundamental.'
         }
       ]
     },
@@ -613,7 +613,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'La cantidad de líneas de código'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! La complejidad temporal (Big O) mide eficiencia. Los seniors piensan en escalabilidad desde el inicio.'
+          explicacion: 'La complejidad temporal (Big O) mide eficiencia. Los seniors piensan en escalabilidad desde el inicio.'
         },
         {
           pregunta: '¿Qué es una lista por comprensión (list comprehension)?',
@@ -623,7 +623,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de error'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! Las list comprehensions son Pythonic - código conciso y legible. Python valora la elegancia en la solución.'
+          explicacion: 'Las list comprehensions son Pythonic - código conciso y legible. Python valora la elegancia en la solución.'
         },
         {
           pregunta: '¿Qué es un decorator en Python?',
@@ -633,7 +633,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de variable global'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Los decorators son funciones de orden superior. Este patrón permite código modular y reutilizable - clave en arquitecturas grandes.'
+          explicacion: 'Los decorators son funciones de orden superior. Este patrón permite código modular y reutilizable - clave en arquitecturas grandes.'
         },
         {
           pregunta: '¿Qué es PEP 8?',
@@ -643,7 +643,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de error común'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! PEP 8 define convenciones de estilo. El código consistente facilita el trabajo en equipo - crucial en la industria.'
+          explicacion: 'PEP 8 define convenciones de estilo. El código consistente facilita el trabajo en equipo - crucial en la industria.'
         },
         {
           pregunta: '¿Qué es un generator en Python?',
@@ -653,7 +653,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de clase'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! Los generators son eficientes en memoria. Los seniors optimizan recursos - importante con grandes volúmenes de datos.'
+          explicacion: 'Los generators son eficientes en memoria. Los seniors optimizan recursos - importante con grandes volúmenes de datos.'
         },
         {
           pregunta: '¿Qué significa "Python es interpretado"?',
@@ -663,7 +663,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Que Python es más lento que otros lenguajes'
           ],
           correcta: 1,
-          explicacion: '¡Bien! Ser interpretado permite desarrollo rápido y debugging interactivo. Cada tipo de lenguaje tiene sus ventajas.'
+          explicacion: 'Ser interpretado permite desarrollo rápido y debugging interactivo. Cada tipo de lenguaje tiene sus ventajas.'
         },
         {
           pregunta: '¿Qué es el duck typing?',
@@ -673,7 +673,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Una librería de Python'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! "Si camina como pato y hace cuac, es un pato". Python se enfoca en comportamiento, no tipos rígidos - flexibilidad poderosa.'
+          explicacion: '"Si camina como pato y hace cuac, es un pato". Python se enfoca en comportamiento, no tipos rígidos - flexibilidad poderosa.'
         },
         {
           pregunta: '¿Qué es un contexto manager (with statement)?',
@@ -683,7 +683,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de decorator'
           ],
           correcta: 1,
-          explicacion: '¡Correcto! with maneja recursos automáticamente (cierra archivos, etc.). La gestión proper de recursos previene bugs y memory leaks.'
+          explicacion: 'with maneja recursos automáticamente (cierra archivos, etc.). La gestión proper de recursos previene bugs y memory leaks.'
         },
         {
           pregunta: '¿Qué es la recursividad?',
@@ -693,7 +693,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de bucle for'
           ],
           correcta: 1,
-          explicacion: '¡Bien! La recursividad resuelve problemas dividiéndolos en subproblemas. Es un patrón mental poderoso en algoritmos avanzados.'
+          explicacion: 'La recursividad resuelve problemas dividiéndolos en subproblemas. Es un patrón mental poderoso en algoritmos avanzados.'
         },
         {
           pregunta: '¿Qué es GIL en Python?',
@@ -703,7 +703,7 @@ Este nivel refleja el pensamiento de un desarrollador senior o tech lead con 5+ 
             'Un tipo de excepción'
           ],
           correcta: 1,
-          explicacion: '¡Exacto! El GIL es una limitación de CPython. Los seniors entienden las limitaciones de sus herramientas y trabajan con/contra ellas.'
+          explicacion: 'El GIL es una limitación de CPython. Los seniors entienden las limitaciones de sus herramientas y trabajan con/contra ellas.'
         }
       ]
     }

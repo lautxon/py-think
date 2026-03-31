@@ -246,6 +246,7 @@ function LevelIntroScreen({ nivel, onStart }) {
 // Componente de Pregunta
 function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, nivelColor, conceptosClave, onPause }) {
   const containerRef = useRef(null);
+  const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [feedback, setFeedback] = useState(null);
@@ -287,6 +288,14 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [onPause]);
 
+  // Foco automático en el input cuando cambia la pregunta
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [numeroPregunta]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.question-card',
@@ -319,6 +328,11 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
         type: 'error',
         message: '⚠️ Ingresa un número válido (1, 2 o 3)'
       });
+      // Cerrar el error después de 2 segundos
+      setTimeout(() => {
+        setFeedback(null);
+        inputRef.current?.focus();
+      }, 2000);
       return;
     }
 
@@ -346,6 +360,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
     );
 
     setTimeout(() => {
+      setFeedback(null);
       onAnswer(isCorrect);
     }, tiempoDinamico);
   };
@@ -446,12 +461,12 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
                 <span className="text-pixel-blue">{'>>>'}</span>
                 <span className="text-gray-400 text-sm">Ingresa tu respuesta (1-3):</span>
                 <input
+                  ref={inputRef}
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   disabled={submitted}
                   className="flex-1 min-w-[60px] bg-transparent border-b-2 border-pixel-green text-pixel-green text-xl px-2 py-1 focus:outline-none"
-                  autoFocus
                   maxLength={1}
                 />
                 <span className="terminal-cursor text-pixel-green">▋</span>
@@ -483,7 +498,7 @@ function QuestionScreen({ pregunta, numeroPregunta, totalPreguntas, onAnswer, ni
               </div>
               <div className="flex-1">
                 <h3 className={`text-lg font-bold mb-3 ${
-                  feedback.type === 'success' ? 'text-pixel-green' : 'text-pixel-blue'
+                  feedback.type === 'success' ? 'text-green-300' : 'text-pixel-blue'
                 }`}>
                   {feedback.title}
                 </h3>
@@ -1175,7 +1190,7 @@ function GlossaryScreen({ onBack, onRestart, fromLevel }) {
         {/* Action Buttons */}
         <div className="glossary-actions grid grid-cols-1 gap-4">
           <button
-            onClick={fromLevel !== null ? onBack : onRestart}
+            onClick={onBack}
             className="pixel-btn w-full bg-pixel-blue text-pixel-dark px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:bg-pixel-green transition-colors"
           >
             <ChevronRight size={24} />
@@ -1351,7 +1366,7 @@ function App() {
       {gameState === 'glossary' && (
         <GlossaryScreen
           onRestart={restartGame}
-          onBack={backToTheory}
+          onBack={glossaryFromLevel !== null ? backToTheory : backToFinal}
           fromLevel={glossaryFromLevel}
         />
       )}

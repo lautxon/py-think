@@ -2,6 +2,8 @@
 
 **Experiencia extraída del proyecto: "Python Code Puzzle - Aprende a Pensar como Programador"**
 
+**Versión:** 1.1 (Actualizada con lecciones de producción)
+
 ---
 
 ## 📋 ÍNDICE
@@ -14,6 +16,7 @@
 6. [Checklist de Features](#checklist-de-features)
 7. [Proceso de Deploy](#proceso-de-deploy)
 8. [Comunicación Efectiva](#comunicación-efectiva)
+9. [Lecciones de Producción](#lecciones-de-producción)
 
 ---
 
@@ -26,6 +29,7 @@ Este Skill documenta la metodología probada para desarrollar **juegos educativo
 - ✅ **Alto impacto** - UX pulida, animaciones fluidas, accesible
 - ✅ **Escalable** - Fácil agregar contenido y features
 - ✅ **Maintenable** - Código limpio, componentes reutilizables
+- ✅ **Accesible** - Contraste ajustable, feedback claro
 
 ---
 
@@ -36,7 +40,7 @@ Este Skill documenta la metodología probada para desarrollar **juegos educativo
 |-------------|---------|-----------|
 | **React** | 19.x | Framework UI |
 | **Vite** | 6.x | Build tool + Dev server |
-| **TailwindCSS** | 3.x | Estilos utilitarios |
+| **TailwindCSS** | 3.4.x | Estilos utilitarios |
 | **GSAP** | 3.x | Animaciones profesionales |
 | **Lucide Icons** | 0.x | Iconos modernos |
 
@@ -53,11 +57,13 @@ proyecto/
 │   ├── App.jsx              # Componente principal
 │   ├── main.jsx             # Entry point
 │   ├── index.css            # Estilos globales + Tailwind
+│   ├── i18n.js              # Internacionalización (opcional)
 │   └── data/
 │       └── gameData.jsx     # Contenido del juego
 ├── index.html               # HTML base
 ├── vite.config.js           # Config de Vite (base path)
 ├── tailwind.config.js       # Config de Tailwind
+├── postcss.config.js        # Config de PostCSS
 ├── package.json             # Dependencias
 └── .github/workflows/
     └── deploy.yml           # CI/CD (opcional)
@@ -71,6 +77,20 @@ proyecto/
 
 ```javascript
 export const gameData = {
+  // Introducción educativa (nuevo)
+  pythonIntro: {
+    titulo: '¿Qué es Python?',
+    introduccion: 'Antes de comenzar...',
+    secciones: [
+      {
+        icono: '🐍',
+        titulo: '¿Qué es Python?',
+        contenido: 'Texto explicativo...'
+      }
+    ],
+    consejo: '💡 Consejo...'
+  },
+
   niveles: [
     {
       id: 'fundamentos',
@@ -78,8 +98,8 @@ export const gameData = {
       icono: '🌱',
       color: 'pixel-green',
       descripcion: '¡Bienvenido!',
-      
-      // TEORÍA (nuevo)
+
+      // TEORÍA
       teoria: {
         titulo: 'Conceptos Fundamentales',
         introduccion: 'Antes de comenzar...',
@@ -97,34 +117,43 @@ export const gameData = {
         ],
         consejo: '💡 Consejo...'
       },
-      
-      // CONCEPTOS CLAVE (para tooltips)
+
+      // CONCEPTOS CLAVE (para tooltips/apuntes)
       conceptosClave: [
         { termino: 'Variable', definicion: '...' }
       ],
-      
+
       // INFO INDUSTRIAL
       industriaInfo: `...`,
-      
+
       // PREGUNTAS
       preguntas: [
         {
           pregunta: '¿Qué es...?',
           opciones: ['Opción 1', 'Opción 2', 'Opción 3'],
           correcta: 0,  // índice de la correcta
-          explicacion: 'Explicación detallada...'
+          explicacion: 'Explicación detallada sin prefijos.'
         }
       ]
     }
   ],
-  
+
   // PANTALLA FINAL
   finalSummary: {
     titulo: '¡Felicidades!',
     items: [...],
     porQuePiensaAsi: `...`,
     paraQuePiensaAsi: `...`
-  }
+  },
+
+  // CARRERA PROFESIONAL (nuevo)
+  carreraProfesional: {
+    titulo: 'Tu Futuro con Python',
+    secciones: [...]
+  },
+
+  // GLOSARIO (nuevo)
+  glosario: [...]
 };
 ```
 
@@ -132,14 +161,18 @@ export const gameData = {
 
 | Componente | Propósito |
 |------------|-----------|
-| `HomeScreen` | Pantalla de inicio con botón de inicio |
-| `TheoryScreen` | Pantalla de teoría expandible (Q&A) |
+| `HomeScreen` | Pantalla de inicio |
+| `PythonIntroScreen` | Introducción educativa (nuevo) |
+| `LevelIntroScreen` | Introducción de nivel |
+| `TheoryScreen` | Pantalla de teoría expandible |
 | `QuestionScreen` | Pantalla de preguntas con terminal |
-| `PauseScreen` | Pantalla de pausa (tecla P/ESC) |
-| `FinalScreen` | Resumen final del juego |
-| `NotesPanel` | Panel de apuntes consultable |
-| `SettingsPanel` | Configuración (contraste, etc.) |
-| `ConceptTooltip` | Tooltip para conceptos clave |
+| `PauseScreen` | Pantalla de pausa (P/ESC) |
+| `FinalScreen` | Resumen final |
+| `FutureWithPythonScreen` | Futuro profesional (nuevo) |
+| `GlossaryScreen` | Glosario (nuevo) |
+| `NotesPanel` | Panel de apuntes |
+| `SettingsPanel` | Configuración (contraste) |
+| `ConceptTooltip` | Tooltip de conceptos |
 
 ### 3. **index.css** - Estilos Globales
 
@@ -157,6 +190,7 @@ export const gameData = {
 .font-pixel { font-family: 'Press Start 2P', cursive; }
 .pixel-btn { box-shadow: ...; transition: ...; }
 .scanlines { background: repeating-linear-gradient(...); }
+.custom-scrollbar { ... }
 ```
 
 ### 4. **tailwind.config.js** - Configuración de Tailwind
@@ -233,18 +267,32 @@ npx tailwindcss init -p
 ```javascript
 // 1. Definir niveles en gameData.jsx
 // 2. Agregar teoría con formato Q&A
-// 3. Crear preguntas con explicaciones
+// 3. Crear preguntas con explicaciones (sin prefijos)
 // 4. Configurar pantalla final
+// 5. Agregar introducción educativa (opcional)
+// 6. Agregar glosario (opcional)
 ```
 
 ### Fase 4: Features Extra (1-2 horas)
-- [ ] Selector de contraste
-- [ ] Barra de progreso visual
-- [ ] Pantalla de pausa
+- [x] Selector de contraste
+- [x] Barra de progreso visual
+- [x] Pantalla de pausa (P/ESC)
+- [x] Panel de apuntes
+- [x] Tooltips de conceptos
+- [x] Feedback dinámico (tiempo según longitud)
 - [ ] Sonidos 8-bit (opcional)
-- [ ] Feedback dinámico
 
-### Fase 5: Deploy (15 min)
+### Fase 5: Testing y Correcciones (30 min)
+```javascript
+// Checklist de bugs comunes:
+// [ ] Cursor vuelve al input después del feedback
+// [ ] Mensajes de error cierran automáticamente
+// [ ] Contraste suficiente en todos los estados
+// [ ] Navegación correcta entre pantallas
+// [ ] Persistencia de configuración
+```
+
+### Fase 6: Deploy (15 min)
 ```bash
 # 1. Build de producción
 npm run build
@@ -288,7 +336,7 @@ function MiComponente({ onStart }) {
 }
 ```
 
-### Patrón 2: Feedback Dinámico
+### Patrón 2: Feedback Dinámico con Tiempo Calculado
 ```jsx
 // Calcular tiempo según longitud del texto
 const feedbackMessage = 'Texto de feedback...';
@@ -299,11 +347,49 @@ const tiempoDinamico = Math.min(
 );
 
 setTimeout(() => {
-  onAnswer(isCorrect);
+  setFeedback(null);  // Limpiar feedback
+  onAnswer(isCorrect);  // Avanzar
 }, tiempoDinamico);
 ```
 
-### Patrón 3: Persistencia de Configuración
+### Patrón 3: Foco Automático en Input
+```jsx
+function QuestionScreen({ pregunta, numeroPregunta }) {
+  const inputRef = useRef(null);
+
+  // Foco cuando cambia la pregunta
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [numeroPregunta]);
+
+  return (
+    <input
+      ref={inputRef}
+      type="text"
+      maxLength={1}
+    />
+  );
+}
+```
+
+### Patrón 4: Mensaje de Error con Auto-Cierre
+```jsx
+if (respuestaInvalida) {
+  setFeedback({ type: 'error', message: '⚠️ Mensaje...' });
+  
+  // Cerrar automáticamente después de 2 segundos
+  setTimeout(() => {
+    setFeedback(null);
+    inputRef.current?.focus();
+  }, 2000);
+  return;
+}
+```
+
+### Patrón 5: Persistencia de Configuración
 ```jsx
 const [contrast, setContrast] = useState(() => {
   const saved = localStorage.getItem('mi-proyecto-contrast');
@@ -316,7 +402,7 @@ useEffect(() => {
 }, [contrast]);
 ```
 
-### Patrón 4: Atajos de Teclado
+### Patrón 6: Atajos de Teclado
 ```jsx
 useEffect(() => {
   const handleKeyPress = (e) => {
@@ -330,20 +416,47 @@ useEffect(() => {
 }, [onPause]);
 ```
 
-### Patrón 5: Barra de Progreso 8-bit
+### Patrón 7: Barra de Progreso 8-bit
 ```jsx
 <div className="flex gap-1 justify-center">
   {Array.from({ length: totalPreguntas }, (_, i) => (
     <div
       key={i}
-      className={`w-4 h-6 border-2 transition-all ${
+      className={`w-4 h-6 border-2 transition-all duration-300 ${
         i < numeroPregunta
           ? 'bg-pixel-green border-white'
           : 'bg-pixel-dark border-pixel-blue'
       }`}
+      style={{
+        boxShadow: i < numeroPregunta ? '0 0 8px var(--pixel-green)' : 'none'
+      }}
     />
   ))}
 </div>
+```
+
+### Patrón 8: Navegación entre Pantallas
+```jsx
+// En App.jsx
+const [gameState, setGameState] = useState('home');
+
+const backToFinal = () => {
+  setGlossaryFromLevel(null);
+  setGameState('final');
+};
+
+const backToTheory = () => {
+  setGlossaryFromLevel(null);
+  setGameState('theory');
+};
+
+// Render condicional
+{gameState === 'glossary' && (
+  <GlossaryScreen
+    onBack={glossaryFromLevel !== null ? backToTheory : backToFinal}
+    fromLevel={glossaryFromLevel}
+  />
+)}
 ```
 
 ---
@@ -351,20 +464,22 @@ useEffect(() => {
 ## ✅ CHECKLIST DE FEATURES
 
 ### Esenciales
-- [ ] Pantalla de inicio con botón "INICIAR"
-- [ ] Pantalla de teoría antes de cada nivel
-- [ ] Pantalla de preguntas con input
-- [ ] Feedback visual (correcto/incorrecto)
-- [ ] Pantalla final con resumen
-- [ ] Progreso entre preguntas
+- [x] Pantalla de inicio con botón "INICIAR"
+- [x] Pantalla de introducción educativa
+- [x] Pantalla de teoría antes de cada nivel
+- [x] Pantalla de preguntas con terminal
+- [x] Feedback visual (correcto/incorrecto)
+- [x] Pantalla final con resumen
+- [x] Progreso entre preguntas
 
 ### Recomendadas
-- [ ] Selector de contraste (accesibilidad)
-- [ ] Barra de progreso visual
-- [ ] Panel de apuntes consultable
-- [ ] Tooltips de conceptos clave
-- [ ] Feedback de tiempo dinámico
-- [ ] Pantalla de pausa (tecla P/ESC)
+- [x] Selector de contraste (accesibilidad)
+- [x] Barra de progreso visual
+- [x] Panel de apuntes consultable
+- [x] Tooltips de conceptos clave
+- [x] Feedback de tiempo dinámico
+- [x] Pantalla de pausa (tecla P/ESC)
+- [x] Glosario consultable
 
 ### Opcionales
 - [ ] Sonidos 8-bit
@@ -446,7 +561,7 @@ jobs:
 
 ### Flujo de Trabajo Recomendado
 ```
-1. Usuario: Describe feature/objectivo
+1. Usuario: Describe feature/objetivo
 2. IA: Analiza y propone plan
 3. Usuario: Aprueba/ajusta plan
 4. IA: Implementa paso a paso
@@ -499,7 +614,7 @@ colors: {
 
 ---
 
-## 📝 NOTAS DE LA EXPERIENCIA
+## 📝 LECCIONES DE PRODUCCIÓN
 
 ### Lo que funcionó bien ✅
 - **TailwindCSS** - Rápido para prototipar
@@ -507,18 +622,31 @@ colors: {
 - **gameData.jsx separado** - Fácil editar contenido sin tocar lógica
 - **Deploy en GitHub Pages** - Gratis y automático
 - **Feedback dinámico** - Mejora UX significativamente
+- **Foco automático** - Esencial para fluidez
+- **Auto-cierre de errores** - Evita frustración
 
 ### Lo que aprendimos 🎓
 - **Contraste es crítico** - Accesibilidad no es opcional
+- **Títulos de feedback sin prefijos** - Evitar redundancia
 - **Teoría antes de práctica** - Los usuarios necesitan contexto
 - **Pausa es esencial** - La vida real interrumpe
 - **Persistencia importa** - localStorage para configuraciones
+- **Navegación clara** - El usuario siempre debe saber dónde está
 
-### Errores comunes a evitar ⚠️
+### Bugs Corregidos en Producción 🐛
+1. **Cursor no volvía al terminal** → Agregar `useEffect` con `focus()` y delay
+2. **Error card no cerraba** → Agregar `setTimeout` de 2 segundos
+3. **Feedback con prefijos redundantes** → Limpiar textos en `gameData.jsx`
+4. **"Volver al resumen" iba al inicio** → Corregir handler en `GlossaryScreen`
+5. **Contraste bajo en título correcto** → Cambiar a `text-green-300`
+
+### Errores Comunes a Evitar ⚠️
 - No probar en móvil temprano
 - Olvidar el base path en vite.config.js
 - No hacer hard refresh después de deploy
 - Ignorar los tiempos de lectura
+- Feedback que no se cierra automáticamente
+- Input sin foco automático
 
 ---
 
@@ -534,4 +662,5 @@ colors: {
 
 **Skill creado:** Marzo 2026  
 **Proyecto base:** Python Code Puzzle  
+**Versión:** 1.1  
 **Estado:** ✅ Probado en producción
